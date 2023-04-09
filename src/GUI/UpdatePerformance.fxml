@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UpdatePerformanceController">
+   <children>
+      <AnchorPane prefHeight="437.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="54.0" layoutY="36.0" text="Modifier Performance" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="246.0" layoutY="23.0" text="Competition" />
+      <Label layoutX="256.0" layoutY="49.0" text="Joueur" />
+      <TextField fx:id="apps" layoutX="351.0" layoutY="79.0" />
+      <TextField fx:id="mins" layoutX="351.0" layoutY="111.0" />
+      <TextField fx:id="buts" layoutX="351.0" layoutY="143.0" />
+      <TextField fx:id="pd" layoutX="351.0" layoutY="175.0" />
+      <TextField fx:id="jaune" layoutX="351.0" layoutY="206.0" />
+      <TextField fx:id="rouge" layoutX="351.0" layoutY="238.0" />
+      <TextField fx:id="tpm" layoutX="351.0" layoutY="269.0" />
+      <TextField fx:id="pr" layoutX="351.0" layoutY="301.0" />
+      <TextField fx:id="ag" layoutX="351.0" layoutY="333.0" />
+      <TextField fx:id="hdm" layoutX="351.0" layoutY="364.0" />
+      <Label layoutX="256.0" layoutY="337.0" text="Areries gangnés" />
+      <Label layoutX="256.0" layoutY="305.0" text="Pr" />
+      <Label layoutX="256.0" layoutY="273.0" text="TpM" />
+      <Label layoutX="256.0" layoutY="242.0" text="Carton Rouge" />
+      <Label layoutX="256.0" layoutY="210.0" text="Carton Jaune" />
+      <Label layoutX="256.0" layoutY="179.0" text="Points Decisives" />
+      <Label layoutX="256.0" layoutY="147.0" text="Buts" />
+      <Label layoutX="256.0" layoutY="115.0" text="Mins" />
+      <Label layoutX="256.0" layoutY="83.0" text="Apps" />
+      <Label layoutX="256.0" layoutY="368.0" text="Hdm" />
+      <Label layoutX="256.0" layoutY="400.0" text="Note" />
+      <TextField fx:id="note" layoutX="351.0" layoutY="396.0" />
+      <ChoiceBox fx:id="competition" layoutX="348.0" layoutY="11.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="joueur" layoutX="348.0" layoutY="44.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

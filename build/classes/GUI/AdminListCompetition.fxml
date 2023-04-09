@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="700.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminListCompetitionController">
+    <stylesheets>
+        <URL value="@adminlistcompetition.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="tableview" layoutX="108.0" layoutY="149.0" prefHeight="253.0" prefWidth="538.0">
+         <columns>
+            <TableColumn fx:id="nom" prefWidth="54.0" text="Nom" />
+            <TableColumn fx:id="arene" prefWidth="82.0" text="Arene" />
+            <TableColumn fx:id="date" prefWidth="127.0" text="Date" />
+            <TableColumn fx:id="statut" prefWidth="41.0" text="Statut" />
+            <TableColumn fx:id="image" prefWidth="75.0" text="Image" />
+            <TableColumn fx:id="winner" prefWidth="55.0" text="Gagnant" />
+            <TableColumn fx:id="deleteB" minWidth="0.0" prefWidth="25.0" text="S" />
+         </columns>
+      </TableView>
+      <Button fx:id="supprimerC" layoutX="541.0" layoutY="446.0" mnemonicParsing="false" onAction="#supprimerC" text="Button" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddPerformanceController">
+   <children>
+      <AnchorPane prefHeight="460.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="45.0" layoutY="34.0" text="Ajouter Performance" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="203.0" layoutY="23.0" text="Competition" />
+      <Label layoutX="218.0" layoutY="49.0" text="Joueur" />
+      <TextField fx:id="jaune" layoutX="323.0" layoutY="218.0" />
+      <TextField fx:id="mins" layoutX="323.0" layoutY="125.0" />
+      <TextField fx:id="buts" layoutX="323.0" layoutY="158.0" />
+      <TextField fx:id="pd" layoutX="323.0" layoutY="188.0" />
+      <TextField fx:id="apps" layoutX="323.0" layoutY="94.0" />
+      <TextField fx:id="rouge" layoutX="323.0" layoutY="250.0" />
+      <TextField fx:id="tpm" layoutX="323.0" layoutY="281.0" />
+      <TextField fx:id="pr" layoutX="323.0" layoutY="312.0" />
+      <TextField fx:id="ag" layoutX="323.0" layoutY="343.0" />
+      <TextField fx:id="hdm" layoutX="323.0" layoutY="375.0" />
+      <TextField fx:id="note" layoutX="323.0" layoutY="407.0" />
+      <Label layoutX="228.0" layoutY="192.0" text="Points Decisives" />
+      <Label layoutX="228.0" layoutY="222.0" text="Carton Jaune" />
+      <Label layoutX="228.0" layoutY="98.0" text="Apps" />
+      <Label layoutX="228.0" layoutY="254.0" text="Carton Rouge" />
+      <Label layoutX="228.0" layoutY="285.0" text="TpM" />
+      <Label layoutX="228.0" layoutY="316.0" text="Pr" />
+      <Label layoutX="228.0" layoutY="347.0" text="Aeriens gagnés" />
+      <Label layoutX="228.0" layoutY="379.0" text="HdM" />
+      <Label layoutX="228.0" layoutY="411.0" text="Note" />
+      <Label layoutX="228.0" layoutY="162.0" text="Buts" />
+      <Label layoutX="228.0" layoutY="129.0" text="Mins" />
+      <ChoiceBox fx:id="competition" layoutX="323.0" layoutY="19.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="joueur" layoutX="323.0" layoutY="54.0" prefWidth="150.0" />
+      <Button fx:id="ajouter" layoutX="350.0" layoutY="471.0" mnemonicParsing="false" onAction="#ajouterP" text="Ajouter" />
+   </children>
+</AnchorPane>
