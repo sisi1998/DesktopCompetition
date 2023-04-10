@@ -39,7 +39,6 @@ public class ListPerformanceController implements Initializable {
     private TableColumn<PerformanceC, Competition>  competition;
     @FXML
     private TableColumn<PerformanceC, String>  apps;
-    @FXML
     private TableColumn<PerformanceC, String>  mins;
     @FXML
     private TableColumn<PerformanceC, String> buts;
@@ -68,7 +67,7 @@ public class ListPerformanceController implements Initializable {
     @FXML
     private TableView<PerformanceC> tableview;
     @FXML
-    private Button delete;
+    private Button CompButton;
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,7 +97,6 @@ public class ListPerformanceController implements Initializable {
   
 }
 
-    @FXML
     private void supprimer(ActionEvent event) {
           
 
@@ -126,5 +124,9 @@ public class ListPerformanceController implements Initializable {
 
 
     
+    }
+
+    @FXML
+    private void ToComp(ActionEvent event) {
     }
 }

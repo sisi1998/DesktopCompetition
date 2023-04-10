@@ -8,6 +8,7 @@ package GUI;
 import Entities.Competition;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -36,8 +37,25 @@ public class CompetitionController implements Initializable {
      * Initializes the controller class.
      */
     public void setData(Competition cmp){
-        Image image = new Image(cmp.getImage());
-        imageC.setImage(image);
+        String destDir = "file:///C:/xampp/htdocs/img/";
+        String imagePath = cmp.getImage();
+     if (imagePath != null) {
+        try {
+            Image image = new Image(destDir+imagePath);
+            if (image.isError()) {
+                System.err.println("Error loading image from URL: " + imagePath);
+            
+            }
+            // Update the image property of the reusable ImageView
+            imageC.setImage(image);
+           
+        } catch (Exception e) {
+            System.err.println("Error loading image: " + e.getMessage());
+          
+        }
+    }
+       
+       
         nomC.setText(cmp.getNom());
         dateC.setText(cmp.getDate());
         box.setStyle("-fx-background-color: #DCDCDC ");

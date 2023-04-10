@@ -19,13 +19,13 @@
       <URL value="@adminaddcompetition.css" />
    </stylesheets>
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="700.0" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" fx:id="anchorePaneEl" prefHeight="550.0" prefWidth="800.0" styleClass="mainFxmlClass">
          <stylesheets>
             <URL value="@adminaddcompetition.css" />
          </stylesheets>
          <children>
             <Label layoutX="279.0" layoutY="300.0" text="Liste des Equipes" />
-            <Button fx:id="Load_image" layoutX="601.0" layoutY="296.0" mnemonicParsing="false" text="image" />
+            <Button fx:id="Load_image" layoutX="700.0" layoutY="263.0" mnemonicParsing="false" onAction="#UploadImageHandle" text="image" />
             <ImageView fitHeight="591.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../Desktop/web/esports/images/soccer/club-gallery-img3.jpg" />
@@ -40,22 +40,21 @@
                </effect>
             </Label>
             <Button fx:id="saveC" layoutX="600.0" layoutY="479.0" mnemonicParsing="false" onAction="#saveC" text="Enregistrer" />
-            <JFXDatePicker fx:id="DateC" layoutX="476.0" layoutY="93.0" />
-            <JFXTimePicker fx:id="timeC" layoutX="476.0" layoutY="134.0" />
+            <JFXDatePicker fx:id="DateC" layoutX="394.0" layoutY="139.0" />
+            <JFXTimePicker fx:id="timeC" layoutX="600.0" layoutY="135.0" />
             <ChoiceBox fx:id="areneC" layoutX="399.0" layoutY="183.0" prefWidth="150.0" />
             <ChoiceBox fx:id="statutC" layoutX="399.0" layoutY="221.0" prefWidth="150.0" />
             <Label layoutX="351.0" layoutY="225.0" text="Statut" />
             <Label layoutX="350.0" layoutY="187.0" prefHeight="17.0" prefWidth="58.0" text="Arene" />
-            <Label layoutX="409.0" layoutY="151.0" text="Heure" />
             <Label layoutX="288.0" layoutY="267.0" text="Equipe Gagnante" />
-            <TextField fx:id="nomC" layoutX="387.0" layoutY="56.0" prefHeight="25.0" prefWidth="174.0" />
-            <Label layoutX="413.0" layoutY="109.0" text="Date" />
+            <TextField fx:id="nomC" layoutX="387.0" layoutY="98.0" prefHeight="25.0" prefWidth="174.0" />
+            <Label layoutX="339.0" layoutY="152.0" text="Date" />
             <ListView fx:id="listview" layoutX="279.0" layoutY="325.0" prefHeight="200.0" prefWidth="200.0" />
-            <ChoiceBox fx:id="winnersE" layoutX="399.0" layoutY="262.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="winnersE" layoutX="525.0" layoutY="263.0" prefWidth="150.0" />
             <ImageView fx:id="imgview" fitHeight="82.0" fitWidth="91.0" layoutX="580.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="timeB" layoutX="320.0" layoutY="134.0" text="Ancien Date" />
+            <Label layoutX="345.0" layoutY="93.0" prefHeight="36.0" prefWidth="39.0" text="Nom" />
+            <Label fx:id="EqG" layoutX="415.0" layoutY="266.0" />
          </children>
       </AnchorPane>
-      <Label layoutX="350.0" layoutY="62.0" text="Nom" />
    </children>
 </AnchorPane>

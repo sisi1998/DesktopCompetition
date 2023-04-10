@@ -79,6 +79,8 @@ public class AdminUpdateCompetitionController implements Initializable {
     String filePath="";
     
     CompetitionService sp = new CompetitionService();
+    
+    @FXML
     private AnchorPane anchorePaneEl;
 
     @FXML
@@ -86,7 +88,7 @@ public class AdminUpdateCompetitionController implements Initializable {
     @FXML
     private ImageView imgview;
     @FXML
-    private Label timeB;
+    private Label EqG;
 
     /**
      * Initializes the controller class.
@@ -108,29 +110,37 @@ public class AdminUpdateCompetitionController implements Initializable {
                 AdminListCompetitionController irc = loader.getController();
                 CompetitionService sp = new CompetitionService();
 
-                id = irc.competition.getId();
+                 id = irc.competition.getId();
+                 System.out.println(irc.competition);
                  
 
             } catch (IOException ex) {
             }
-      ObservableList<Arena> arenesList = FXCollections.observableArrayList(sp.getAllArenas());
+    ObservableList<Arena> arenesList = FXCollections.observableArrayList(sp.getAllArenas());
+   
     areneC.setItems(arenesList);
 
     ObservableList<String> statutList = FXCollections.observableArrayList("En attente", "En cours", "Terminé");
     statutC.setItems(statutList);
+    
+    
+    
+    ObservableList<Equipe>eqList= FXCollections.observableArrayList(sp.getAllEquipes());
+    winnersE.setItems(eqList);
 
     // Initialize the listView
     ObservableList<Equipe> items = FXCollections.observableArrayList(sp.getAllEquipes());
     listview.setItems(items);
+     System.out.println( items);
     listview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }   
     
     
-           int idS;
+   int idS;
 
     public void setId(int id) {
 
-        idS = id;
+        this.id = id;
         System.out.println("her id " + idS);}
         
         
@@ -162,8 +172,8 @@ public class AdminUpdateCompetitionController implements Initializable {
             showAlert("Arena obligatoire", "Sélectionnez une Arena");
         } else if (status.isEmpty()) {
             showAlert("Statut obligatoire", "Sélectionnez un statut");
-        }  else if (equipeList.size() < 2) {
-    showAlert("Equipe obligatoire", "Sélectionnez au moins deux équipes");;
+//        }  else if (equipeList.size() < 2) {
+//    showAlert("Equipe obligatoire", "Sélectionnez au moins deux équipes");;
         } else if (sp.exists(dateString, arena.getId())) {
             showAlert("Compétition existante", "Une compétition avec la même date et la même arena existe déjà");
         } else {
@@ -171,7 +181,8 @@ public class AdminUpdateCompetitionController implements Initializable {
             Competition competition = new Competition(dateString+" "+formattedTime, arena, status, name, filePath);
 
             // Call the addCompetition method from the service and add the competition
-            sp.Add(competition, equipeList);
+            System.out.println(id);
+            sp.Update(competition, equipeList, id);
 
             // Clear input fields
             nomC.clear();
@@ -195,16 +206,20 @@ public class AdminUpdateCompetitionController implements Initializable {
     alert.setContentText(message);
     alert.showAndWait();
 }
+    @FXML
   private void UploadImageHandle(ActionEvent event) {
     FileChooser fileOpen = new FileChooser();
+   System.out.println("hi");
     Stage stage = (Stage) anchorePaneEl.getScene().getWindow();
     File file = fileOpen.showOpenDialog(stage);
     
     if(file != null) {
         try {
+             
             String path = file.getName(); //file.getPath() 0 security...
             filePath=path;
             //https://img.png 
+            
             Image image = new Image(file.toURI().toString(),100,100,false,true);
             imgview.setImage(image);
             
@@ -243,8 +258,8 @@ public void setStatus(String status) {
 
 public void setEquipeList(List<Equipe> equipeList) {
     Platform.runLater(() -> {
-        listview.getItems().clear();
-        listview.getItems().addAll(equipeList);
+      //  listview.getItems().clear();
+        //listview.getItems().addAll(equipeList);
     });
 }
 
@@ -257,8 +272,10 @@ public void setDateAndTime(String dateAndTime) {
     });
 }
 
+
 public void setWinner(Equipe eq) {
-    Platform.runLater(() -> winnersE.setValue(eq));
+    Platform.runLater(() -> EqG.setText(eq.getNom()));
+    System.out.println(eq);
 }
 
 public void setImage(String img) {

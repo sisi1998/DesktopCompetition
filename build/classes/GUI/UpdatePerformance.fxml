@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.URL?>
 
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -6,7 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UpdatePerformanceController">
-   <children>
+ <stylesheets>
+        <URL value="@adminaddcompetition.css" />
+    </stylesheets>    
+    <children>
       <AnchorPane prefHeight="437.0" prefWidth="200.0">
          <children>
             <Label layoutX="54.0" layoutY="36.0" text="Modifier Performance" />

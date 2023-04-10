@@ -9,7 +9,9 @@ import Entities.Arena;
 import Entities.Competition;
 import Entities.Equipe;
 import Services.CompetitionService;
+import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Optional;
 import javafx.scene.Node;
 import java.util.ResourceBundle;
@@ -63,87 +65,95 @@ public class AdminListCompetitionController implements Initializable {
     
       CompetitionService sp = new CompetitionService();
     @FXML
-    private Button supprimerC;
+    private Button PerfC;
     @FXML
-    private TableColumn<Competition, Button> deleteB;
+    private Button compC;
+    @FXML
+    private Button addCompetition;
+    @FXML
+    private Button delete;
     
-    
-    
-    
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //setting thr url
-        
-        
-        colSuppBtn = new TableColumn<>("Supprimer");
-        tableview.getColumns().add(colSuppBtn);
 
-        colModifBtn = new TableColumn<>("Modifier");
-        tableview.getColumns().add(colModifBtn);
 
-         addButtonModifToTable();
-        addButtonDeleteToTable();
-        
-        ObservableList<Competition> list = FXCollections.observableArrayList();
-        for (Competition u : sp.affichage()) {
-            list.add(u);
-            System.out.println();
-        }
-   statut.setCellValueFactory(new PropertyValueFactory<>("etat"));
+// Create a HashMap to store the ImageViews for each Competition
+private HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
+
+/**
+ * Initializes the controller class.
+ */
+@Override
+public void initialize(URL url, ResourceBundle rb) {
+    // Setting the URL
+
+    colSuppBtn = new TableColumn<>("Supprimer");
+    tableview.getColumns().add(colSuppBtn);
+
+    colModifBtn = new TableColumn<>("Modifier");
+    tableview.getColumns().add(colModifBtn);
+
+    addButtonModifToTable();
+    //addButtonDeleteToTable();
+
+    ObservableList<Competition> list = FXCollections.observableArrayList();
+    for (Competition u : sp.affichage()) {
+        list.add(u);
+        System.out.println();
+    }
+    statut.setCellValueFactory(new PropertyValueFactory<>("etat"));
     arene.setCellValueFactory(new PropertyValueFactory<>("Idarena"));
     date.setCellValueFactory(new PropertyValueFactory<>("date"));
-    
-     nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-  //  image.setCellValueFactory(new PropertyValueFactory<>("image"));
+
+    nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+    // image.setCellValueFactory(new PropertyValueFactory<>("image"));
     winner.setCellValueFactory(new PropertyValueFactory<>("Idwinner"));
-    
-   // First, create a single ImageView object to reuse for each cell
-ImageView imageView = new ImageView();
-imageView.setFitWidth(50);
-imageView.setFitHeight(50);
 
-// Then, set up the cell value factory to return the ImageView for each cell
+    // First, create a single ImageView object to reuse for each cell
+    ImageView imageView = new ImageView();
+    imageView.setFitWidth(50);
+    imageView.setFitHeight(50);
 
- 
- 
- String destDir = "file:///C:/xampp/htdocs/img/";
-image.setCellValueFactory(cellData -> {
-    Competition competition = cellData.getValue();
-    String imagePath = competition.getImage();
-    if (imagePath != null) {
-        try {
-            Image image = new Image(destDir+imagePath);
-            if (image.isError()) {
-                System.err.println("Error loading image from URL: " + imagePath);
+    // Then, set up the cell value factory to return the ImageView for each cell
+    String destDir = "file:///C:/xampp/htdocs/img/";
+    image.setCellValueFactory(cellData -> {
+        Competition competition = cellData.getValue();
+        String imagePath = competition.getImage();
+        if (imagePath != null) {
+            try {
+                // Check if an ImageView has already been created for this Competition ID
+                ImageView imageViewForCell = imageViewMap.get(competition.getId());
+                if (imageViewForCell == null) {
+                    // If not, create a new ImageView and store it in the HashMap
+                    imageViewForCell = new ImageView();
+                    imageViewForCell.setFitWidth(50);
+                    imageViewForCell.setFitHeight(50);
+                    imageViewMap.put(competition.getId(), imageViewForCell);
+                }
+                Image image = new Image(destDir + imagePath);
+                if (image.isError()) {
+                    System.err.println("Error loading image from URL: " + imagePath);
+                    return null;
+                }
+                // Update the image property of the reusable ImageView
+                imageViewForCell.setImage(image);
+                return new SimpleObjectProperty<>(imageViewForCell);
+            } catch (Exception e) {
+                System.err.println("Error loading image: " + e.getMessage());
                 return null;
             }
-            // Update the image property of the reusable ImageView
-            imageView.setImage(image);
-            return new SimpleObjectProperty<>(imageView);
-        } catch (Exception e) {
-            System.err.println("Error loading image: " + e.getMessage());
+        } else {
+            // If the image path is null, return null to display an empty cell
             return null;
         }
-    } else {
-        // If the image path is null, return null to display an empty cell
-        return null;
-    }
-});
-
+    });
 
     // Load the data from the CompetitionService into the TableView
-   
     tableview.setItems(list);
 
-    
-    }    
+}
 
    
-  @FXML
-private void supprimerC(ActionEvent event) {
+    @FXML
+    private void supprimerC(ActionEvent event) {
 
     Competition selectedCompetition = tableview.getSelectionModel().getSelectedItem();
     if (selectedCompetition == null) {
@@ -170,7 +180,7 @@ private void supprimerC(ActionEvent event) {
 
      
     Button btn;
-    Competition competition = new Competition();
+   Competition competition = new Competition();
     public void addButtonModifToTable() {
         Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>> cellFactory = new Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>>() {
             @Override
@@ -183,11 +193,13 @@ private void supprimerC(ActionEvent event) {
                         btn.setOnAction((ActionEvent event) -> {
                             try {
                               competition = tableview.getSelectionModel().getSelectedItem();//
-                            System.out.println("hello");
+                            System.out.println(competition);
 
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminUpdateCompetition.fxml"));
                                 Parent root = loader.load();
                             AdminUpdateCompetitionController controller = loader.getController();
+                          System.out.println(competition);
+                            controller.setId(competition.getId());
                             controller.setNom(competition.getNom());
                             controller.setArena(competition.getArena());
                             controller.setStatus(competition.getEtat());
@@ -195,7 +207,7 @@ private void supprimerC(ActionEvent event) {
                             controller.setDateAndTime(competition.getDate());
                             controller.setWinner(competition.getIdwinner());
                             controller.setImage(competition.getImage());
-
+                            System.out.println(competition.getNom());
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(new Scene(root));
                             stage.show();
@@ -225,38 +237,66 @@ private void supprimerC(ActionEvent event) {
     }
 
     Button btnSupprimer;
+//
+//    public void addButtonDeleteToTable() {
+//        Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>> cellFactory = new Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>>() {
+//            @Override
+//            public TableCell<Competition, Void> call(final TableColumn<Competition, Void> param) {
+//
+//                final TableCell<Competition, Void> cell = new TableCell<Competition, Void>() {
+//
+//                    {
+//                        btnSupprimer = new Button("Supprimer");
+//                        btnSupprimer = new Button("Supprimer");
+//                        btnSupprimer.setOnAction((ActionEvent event) -> {
+//
+//                            competition = tableview.getSelectionModel().getSelectedItem();
+//                         // showConfirmation(A);
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void updateItem(Void item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        if (empty) {
+//                            setGraphic(null);
+//                        } else {
+//                            setGraphic(btnSupprimer);
+//                        }
+//                    }
+//                };
+//                return cell;
+//            }
+//        };
+//        colSuppBtn.setCellFactory(cellFactory);
+//
+//    }
 
-    public void addButtonDeleteToTable() {
-        Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>> cellFactory = new Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>>() {
-            @Override
-            public TableCell<Competition, Void> call(final TableColumn<Competition, Void> param) {
+    @FXML
+    private void EspacePerformance(ActionEvent event) throws IOException {
+        
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+    ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                            
+    }
 
-                final TableCell<Competition, Void> cell = new TableCell<Competition, Void>() {
+    @FXML
+    private void espaceCompetition(ActionEvent event) {
+    }
 
-                    {
-                        btnSupprimer = new Button("Supprimer");
-                        btnSupprimer = new Button("Supprimer");
-                        btnSupprimer.setOnAction((ActionEvent event) -> {
-
-                            competition = tableview.getSelectionModel().getSelectedItem();
-                         //   showConfirmation(A);
-                        });
-                    }
-
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(btnSupprimer);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-        colSuppBtn.setCellFactory(cellFactory);
-
+    @FXML
+    private void addCompetitionM(ActionEvent event) throws IOException {
+             
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminAddCompetition.fxml"));
+    Parent root = loader.load();
+   AdminAddCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                            
     }
 }

@@ -31,8 +31,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -92,6 +97,8 @@ public class AdminAddCompetitionController implements Initializable {
     private Button btn_ajouterC1;
     @FXML
     private Button QR;
+    @FXML
+    private Button backButton;
         
      
     
@@ -150,6 +157,14 @@ private void AjouterV(ActionEvent event) {
 
             // Call the addCompetition method from the service and add the competition
             sp.Add(competition, equipeList);
+   showAlert("succes", "competition ajoutée");
+          
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+    Parent root = loader.load();
+   AdminListCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
 
             // Clear input fields
             nomC.clear();
@@ -207,6 +222,16 @@ private void AjouterV(ActionEvent event) {
 
     @FXML
     private void QRcode(ActionEvent event) {
+    }
+
+    @FXML
+    private void retourB(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+    Parent root = loader.load();
+   AdminListCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
     }
 
 

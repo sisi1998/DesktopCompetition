@@ -54,5 +54,6 @@
          </image>
       </ImageView>
       <TextField fx:id="nomC" layoutX="413.0" layoutY="68.0" prefHeight="25.0" prefWidth="174.0" text="Inserer le nom" />
+      <Button fx:id="backButton" layoutX="93.0" layoutY="501.0" mnemonicParsing="false" onAction="#retourB" text="retour" />
    </children>
 </AnchorPane>
