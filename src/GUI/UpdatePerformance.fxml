@@ -1,48 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UpdatePerformanceController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UpdatePerformanceController">
  <stylesheets>
         <URL value="@adminaddcompetition.css" />
     </stylesheets>    
     <children>
       <AnchorPane prefHeight="437.0" prefWidth="200.0">
          <children>
-            <Label layoutX="54.0" layoutY="36.0" text="Modifier Performance" />
+            <AnchorPane layoutX="-7.0" prefHeight="557.0" prefWidth="206.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+               <children>
+                  <Button fx:id="compC" layoutX="29.0" layoutY="458.0" mnemonicParsing="false" onAction="#espaceCompetition" styleClass="search-box" stylesheets="@adminaddcompetition.css" text="Espace Competition" />
+                  <Button fx:id="PerfC" layoutX="28.0" layoutY="494.0" mnemonicParsing="false" onAction="#EspacePerformance" styleClass="search-box" text="Espace Performance" />
+                  <HBox layoutX="1.0" layoutY="31.0" prefHeight="100.0" prefWidth="200.0">
+                     <styleClass>
+                        <String fx:value="transparent" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                  <Label layoutX="65.0" layoutY="37.0" text="Espace" textFill="#fcfcfc">
+                     <font>
+                        <Font name="Corbel Light" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="81.0" text="Performance" textFill="WHITE">
+                     <font>
+                        <Font name="Corbel Light" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
-      <Label layoutX="246.0" layoutY="23.0" text="Competition" />
-      <Label layoutX="256.0" layoutY="49.0" text="Joueur" />
-      <TextField fx:id="apps" layoutX="351.0" layoutY="79.0" />
-      <TextField fx:id="mins" layoutX="351.0" layoutY="111.0" />
-      <TextField fx:id="buts" layoutX="351.0" layoutY="143.0" />
-      <TextField fx:id="pd" layoutX="351.0" layoutY="175.0" />
-      <TextField fx:id="jaune" layoutX="351.0" layoutY="206.0" />
-      <TextField fx:id="rouge" layoutX="351.0" layoutY="238.0" />
-      <TextField fx:id="tpm" layoutX="351.0" layoutY="269.0" />
-      <TextField fx:id="pr" layoutX="351.0" layoutY="301.0" />
-      <TextField fx:id="ag" layoutX="351.0" layoutY="333.0" />
-      <TextField fx:id="hdm" layoutX="351.0" layoutY="364.0" />
-      <Label layoutX="256.0" layoutY="337.0" text="Areries gangnés" />
-      <Label layoutX="256.0" layoutY="305.0" text="Pr" />
-      <Label layoutX="256.0" layoutY="273.0" text="TpM" />
-      <Label layoutX="256.0" layoutY="242.0" text="Carton Rouge" />
-      <Label layoutX="256.0" layoutY="210.0" text="Carton Jaune" />
-      <Label layoutX="256.0" layoutY="179.0" text="Points Decisives" />
-      <Label layoutX="256.0" layoutY="147.0" text="Buts" />
-      <Label layoutX="256.0" layoutY="115.0" text="Mins" />
-      <Label layoutX="256.0" layoutY="83.0" text="Apps" />
-      <Label layoutX="256.0" layoutY="368.0" text="Hdm" />
-      <Label layoutX="256.0" layoutY="400.0" text="Note" />
-      <TextField fx:id="note" layoutX="351.0" layoutY="396.0" />
-      <ChoiceBox fx:id="competition" layoutX="348.0" layoutY="11.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="joueur" layoutX="348.0" layoutY="44.0" prefWidth="150.0" />
-      <Button fx:id="enregistrerB" layoutX="385.0" layoutY="454.0" mnemonicParsing="false" onAction="#enregistrer" text="Enregistrer" />
+      <Label layoutX="257.0" layoutY="96.0" text="Competition" />
+      <Label layoutX="449.0" layoutY="96.0" text="Joueur" />
+      <TextField fx:id="apps" layoutX="351.0" layoutY="132.0" styleClass="add-btn" stylesheets="@adminaddcompetition.css" />
+      <TextField fx:id="mins" layoutX="351.0" layoutY="167.0" styleClass="add-btn" />
+      <TextField fx:id="buts" layoutX="351.0" layoutY="201.0" styleClass="add-btn" />
+      <TextField fx:id="pd" layoutX="351.0" layoutY="236.0" styleClass="add-btn" />
+      <TextField fx:id="jaune" layoutX="351.0" layoutY="266.0" styleClass="add-btn" />
+      <TextField fx:id="rouge" layoutX="351.0" layoutY="305.0" styleClass="add-btn" />
+      <TextField fx:id="tpm" layoutX="351.0" layoutY="339.0" styleClass="add-btn" />
+      <TextField fx:id="pr" layoutX="351.0" layoutY="378.0" styleClass="add-btn" />
+      <TextField fx:id="ag" layoutX="351.0" layoutY="415.0" styleClass="add-btn" />
+      <TextField fx:id="hdm" layoutX="349.0" layoutY="450.0" styleClass="add-btn" />
+      <Label layoutX="256.0" layoutY="419.0" text="Areries gangnés" />
+      <Label layoutX="297.0" layoutY="382.0" text="Pr" />
+      <Label layoutX="290.0" layoutY="343.0" text="TpM" />
+      <Label layoutX="265.0" layoutY="309.0" text="Carton Rouge" />
+      <Label layoutX="255.0" layoutY="270.0" text="Carton Jaune" />
+      <Label layoutX="259.0" layoutY="240.0" text="Points Decisives" />
+      <Label layoutX="278.0" layoutY="205.0" text="Buts" />
+      <Label layoutX="286.0" layoutY="171.0" text="Mins" />
+      <Label layoutX="288.0" layoutY="136.0" text="Apps" />
+      <Label layoutX="289.0" layoutY="454.0" text="Hdm" />
+      <Label layoutX="288.0" layoutY="487.0" text="Note" />
+      <TextField fx:id="note" layoutX="349.0" layoutY="483.0" styleClass="add-btn" />
+      <Button fx:id="enregistrerB" layoutX="677.0" layoutY="458.0" mnemonicParsing="false" onAction="#enregistrer" styleClass="add-btn" text="Enregistrer" />
+      <Label fx:id="competition" layoutX="344.0" layoutY="92.0" prefHeight="25.0" prefWidth="74.0" text="competiton" />
+      <Label fx:id="joueur" layoutX="514.0" layoutY="96.0" text="Joueur" />
+      <Label layoutX="308.0" layoutY="35.0" text="Modifier la performance">
+         <font>
+            <Font name="Corbel Light" size="26.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

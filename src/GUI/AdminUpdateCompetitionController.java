@@ -31,6 +31,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -89,6 +90,8 @@ public class AdminUpdateCompetitionController implements Initializable {
     private ImageView imgview;
     @FXML
     private Label EqG;
+    @FXML
+    private Button retoub;
 
     /**
      * Initializes the controller class.
@@ -185,15 +188,23 @@ public class AdminUpdateCompetitionController implements Initializable {
 
             // Call the addCompetition method from the service and add the competition
             System.out.println(id);
-            System.out.println(competition.getIdwinner()+"ddd");
+             System.out.println(competition.getIdarena().getId()+"ddd");
+            System.out.println(competition.getIdwinner()+"idwin");
             sp.Update(competition, equipeList, id);
+            showAlert("succes", "modifiée avec succes");
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+    Parent root = loader.load();
+   AdminListCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
 
             // Clear input fields
-            nomC.clear();
-            DateC.setValue(null);
-            areneC.setValue(null);
-            statutC.setValue(null);
-            imgview.setImage(null);
+//            nomC.clear();
+//            DateC.setValue(null);
+//            areneC.setValue(null);
+//            statutC.setValue(null);
+//            imgview.setImage(null);
         }
     } catch (Exception ex) {
         ex.printStackTrace();
@@ -290,6 +301,16 @@ public void setImage(String img) {
         imgview.setImage(image);
     });
 }
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+    Parent root = loader.load();
+   AdminListCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
 
                            
 }

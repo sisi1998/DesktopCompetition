@@ -14,24 +14,24 @@
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PerformanceFrontController">
    <children>
-      <TableView fx:id="tableview" layoutX="279.0" layoutY="117.0" prefHeight="388.0" prefWidth="495.0">
+      <TableView fx:id="tableview" layoutX="244.0" layoutY="91.0" prefHeight="388.0" prefWidth="558.0">
          <columns>
             <TableColumn fx:id="competition" maxWidth="107.0" minWidth="3.0" prefWidth="50.0" text="Competition" />
             <TableColumn fx:id="joueur" prefWidth="53.0" text="Joueur" />
-            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="61.0" text="Apps" />
-            <TableColumn fx:id="mins" prefWidth="38.0" text="Mins" />
-            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="63.0" text="Buts" />
-            <TableColumn fx:id="pd" prefWidth="42.0" text="PointsD" />
+            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="33.0" text="Apps" />
+            <TableColumn fx:id="mins" prefWidth="36.0" text="Mins" />
+            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="26.0" text="Buts" />
+            <TableColumn fx:id="pd" prefWidth="67.0" text="PointsD" />
             <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="40.0" text="C.Jaune" />
-            <TableColumn fx:id="rouge" prefWidth="51.0" text="C.Rouge" />
-            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="39.0" text="TpM" />
-            <TableColumn fx:id="pr" prefWidth="30.0" text="PR" />
-            <TableColumn fx:id="ag" prefWidth="35.0" text="AeriensGagné" />
-            <TableColumn fx:id="hdm" prefWidth="31.0" text="HdM" />
-            <TableColumn fx:id="note" minWidth="0.0" prefWidth="36.0" text="Note" />
+            <TableColumn fx:id="rouge" prefWidth="45.0" text="C.Rouge" />
+            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="28.0" text="TpM" />
+            <TableColumn fx:id="pr" prefWidth="24.0" text="PR" />
+            <TableColumn fx:id="ag" prefWidth="38.0" text="AeriensGagné" />
+            <TableColumn fx:id="hdm" prefWidth="28.0" text="HdM" />
+            <TableColumn fx:id="note" minWidth="0.0" prefWidth="35.0" text="Note" />
          </columns>
       </TableView>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="550.0" prefWidth="233.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+      <AnchorPane layoutX="-1.0" prefHeight="560.0" prefWidth="245.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
          <children>
             <Hyperlink layoutX="87.0" layoutY="252.0" text="Hyperlink" />
             <ImageView fitHeight="508.0" fitWidth="225.0" layoutX="4.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
@@ -39,7 +39,7 @@
                   <Image url="@IMG/club-gallery-img3.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="9.0" prefHeight="90.0" prefWidth="217.0" styleClass="shadow" stylesheets="@adminaddcompetition.css" text="Espace Performance" textFill="#ff580af9">
+            <Label layoutX="16.0" layoutY="-17.0" prefHeight="90.0" prefWidth="218.0" styleClass="shadow" stylesheets="@adminaddcompetition.css" text="Espace Performance" textFill="#ff580af9">
                <font>
                   <Font name="Impact" size="26.0" />
                </font>

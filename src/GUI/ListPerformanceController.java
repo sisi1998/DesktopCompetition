@@ -13,6 +13,7 @@ import Entities.User;
 import Services.CompetitionService;
 import Services.PerformanceCService;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -92,6 +93,14 @@ public class ListPerformanceController implements Initializable {
     private TableColumn<PerformanceC, Void> colModifBtn;
     private TableColumn<PerformanceC, Void> colSuppBtn;
     private TableColumn<PerformanceC, Void> colExpBtn;
+    @FXML
+    private Button AddB;
+    @FXML
+    private Button ComB;
+    @FXML
+    private Button compC;
+    @FXML
+    private Button PerfC;
     
     
     
@@ -224,6 +233,40 @@ public class ListPerformanceController implements Initializable {
 
 
     
+    }
+
+    @FXML
+    private void addPerf(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AddPerformance.fxml"));
+    Parent root = loader.load();
+   AddPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void GotoCom(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+    Parent root = loader.load();
+   AdminListCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void espaceCompetition(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+    Parent root = loader.load();
+   AdminListCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void EspacePerformance(ActionEvent event) {
     }
    
 }

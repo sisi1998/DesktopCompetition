@@ -20,11 +20,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -37,9 +39,9 @@ import javafx.stage.Stage;
 public class UpdatePerformanceController implements Initializable {
 
     @FXML
-    private ChoiceBox<Competition> competition;
+    private Label competition;
     @FXML
-    private ChoiceBox<User> joueur;
+    private Label joueur;
     @FXML
     private TextField apps;
     @FXML
@@ -67,6 +69,10 @@ public class UpdatePerformanceController implements Initializable {
   CompetitionService sp = new CompetitionService();
      PerformanceCService ps = new PerformanceCService();
          private int id;
+    @FXML
+    private Button compC;
+    @FXML
+    private Button PerfC;
     /**
      * Initializes the controller class.
      */
@@ -96,8 +102,8 @@ public class UpdatePerformanceController implements Initializable {
 
     @FXML
     private void enregistrer(ActionEvent event) {
-          Competition cmp = competition.getValue();
-        User jou = joueur.getValue();
+       //Competition cmp = competition.getValue();
+      //  User jou = joueur.getValue();
        String jauneStr = jaune.getText();
         String rougeStr = rouge.getText();
         String minsStr = mins.getText();
@@ -197,11 +203,21 @@ public class UpdatePerformanceController implements Initializable {
     else{
     //public PerformanceC(int Idjoueur, int Idcom, String Apps, String Mins, String Buts, String PointsDecisives, String Jaune, String Rouge, String TpM, String Pr, String AerienG, String HdM, String Note) {
 
-     PerformanceC perf = new PerformanceC(perfs.getId(),jou,cmp,appsStr,minsStr,butsStr,pdStr,jauneStr,rougeStr,tpmStr,prStr,agStr,hdmStr,noteStr);
+    
+     
+    
+     PerformanceC perf = new PerformanceC(perfs.getId(),perfs.getIdjoueur(),perfs.getIdcom(),appsStr,minsStr,butsStr,pdStr,jauneStr,rougeStr,tpmStr,prStr,agStr,hdmStr,noteStr);
        System.out.println(perfs);
        System.out.println(perfs.getId()+"kkkkkk");
             // Call the addCompetition method from the service and add the competition
          ps.Update(perf);
+          showAlert("succes", "modifiée avec succes.");
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+  ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
 
             // Clear input fields
             
@@ -256,11 +272,11 @@ public class UpdatePerformanceController implements Initializable {
 } 
            
              public void setCom(Competition nom) {
-    Platform.runLater(() -> competition.setValue(nom));
+    Platform.runLater(() -> competition.setText(nom.getNom()));
 
 } 
                public void setJou(User nom) {
-     Platform.runLater(() -> joueur.setValue(nom));
+     Platform.runLater(() -> joueur.setText(nom.getNom()));
    
 } 
              
@@ -268,6 +284,27 @@ public class UpdatePerformanceController implements Initializable {
 
         this.id = id;
         }
+
+    @FXML
+    private void espaceCompetition(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+    Parent root = loader.load();
+   AdminListCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void EspacePerformance(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+  ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+
+    }
     
     
     

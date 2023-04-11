@@ -1,31 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListPerformanceController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListPerformanceController">
    <children>
-      <TableView fx:id="tableview" layoutX="221.0" layoutY="97.0" prefHeight="400.0" prefWidth="550.0">
+      <TableView fx:id="tableview" layoutX="189.0" layoutY="85.0" prefHeight="400.0" prefWidth="617.0">
         <columns>
           <TableColumn fx:id="joueur" prefWidth="60.0" text="Joueur" />
           <TableColumn fx:id="competition" maxWidth="123.0" minWidth="3.0" prefWidth="65.0" text="Competition" />
-            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="0.0" text="Column X" />
-            <TableColumn fx:id="mins" minWidth="0.0" prefWidth="40.0" text="mins" />
-            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="42.0" text="buts" />
-            <TableColumn fx:id="pd" prefWidth="40.0" text="pd" />
-            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="40.0" text="jaune" />
-            <TableColumn fx:id="rouge" prefWidth="40.0" text="rouge" />
-            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="40.0" text="tpm" />
+            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="34.0" text="Apps" />
+            <TableColumn fx:id="mins" minWidth="0.0" prefWidth="24.0" text="mins" />
+            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="34.0" text="buts" />
+            <TableColumn fx:id="pd" prefWidth="38.0" text="pd" />
+            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="32.0" text="jaune" />
+            <TableColumn fx:id="rouge" prefWidth="48.0" text="rouge" />
+            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="32.0" text="tpm" />
             <TableColumn fx:id="pr" prefWidth="40.0" text="pr" />
             <TableColumn fx:id="ag" prefWidth="40.0" text="ag" />
             <TableColumn fx:id="hdm" prefWidth="40.0" text="hdm" />
             <TableColumn fx:id="note" prefWidth="56.0" text="note" />
         </columns>
       </TableView>
-      <Label layoutX="434.0" layoutY="65.0" text="Liste des Performancesl" />
-      <Button fx:id="delete" layoutX="652.0" layoutY="40.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Button fx:id="delete" layoutX="207.0" layoutY="499.0" mnemonicParsing="false" onAction="#supprimer" styleClass="add-btn" stylesheets="@adminaddcompetition.css" text="Supprimer" />
+      <Button fx:id="AddB" layoutX="207.0" layoutY="50.0" mnemonicParsing="false" onAction="#addPerf" styleClass="add-btn" stylesheets="@adminaddcompetition.css" text="Ajouter Performance" />
+      <Button fx:id="ComB" layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#GotoCom" text="Espace Competition" />
+      <Button layoutX="27.0" layoutY="135.0" mnemonicParsing="false" text="Espace Performance" />
+      <AnchorPane layoutX="-12.0" prefHeight="550.0" prefWidth="200.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+         <children>
+            <Button fx:id="compC" layoutX="29.0" layoutY="458.0" mnemonicParsing="false" onAction="#espaceCompetition" styleClass="search-box" stylesheets="@adminaddcompetition.css" text="Espace Competition" />
+            <Button fx:id="PerfC" layoutX="28.0" layoutY="494.0" mnemonicParsing="false" onAction="#EspacePerformance" styleClass="search-box" text="Espace Performance" />
+            <HBox layoutX="1.0" layoutY="31.0" prefHeight="100.0" prefWidth="200.0">
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </HBox>
+            <Label layoutX="65.0" layoutY="37.0" text="Espace" textFill="#fcfcfc">
+               <font>
+                  <Font name="Corbel Light" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="81.0" text="Performance" textFill="WHITE">
+               <font>
+                  <Font name="Corbel Light" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

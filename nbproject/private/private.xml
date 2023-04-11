@@ -5,17 +5,18 @@
             <url>src/GUI/AdminAddCompetitionController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>120</line>
+                <line>125</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/AdminUpdateCompetition.fxml</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/adminaddcompetition.css</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/Services/CompetitionService.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/Entities/Competition.java</file>
             <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/AdminUpdateCompetitionController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/AdminListCompetitionController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/UpdatePerformanceController.java</file>
         </group>
     </open-files>
 </project-private>

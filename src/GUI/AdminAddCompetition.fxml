@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTimePicker?>
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorePaneEl" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminAddCompetitionController">
@@ -19,14 +20,14 @@
         <URL value="@adminaddcompetition.css" />
     </stylesheets>
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="700.0" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" layoutX="-7.0" prefHeight="550.0" prefWidth="800.0" styleClass="mainFxmlClass">
          <stylesheets>
             <URL value="@adminaddcompetition.css" />
          </stylesheets>
          <children>
             <Label layoutX="310.0" layoutY="275.0" text="Liste des Equipes" />
-            <Button fx:id="Load_image" layoutX="341.0" layoutY="234.0" mnemonicParsing="false" onAction="#UploadImageHandle" text="image" />
-            <Label alignment="BASELINE_LEFT" cache="true" layoutX="350.0" layoutY="-9.0" prefHeight="32.0" prefWidth="198.0" text="Ajouter Competition" textAlignment="RIGHT" textOverrun="WORD_ELLIPSIS" AnchorPane.bottomAnchor="477.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="-9.0">
+            <Button fx:id="Load_image" layoutX="593.0" layoutY="206.0" mnemonicParsing="false" onAction="#UploadImageHandle" styleClass="add-btn" text="image" />
+            <Label alignment="BASELINE_LEFT" cache="true" layoutX="350.0" layoutY="-9.0" prefHeight="32.0" prefWidth="198.0" text="Ajouter  une Competition" textAlignment="RIGHT" textOverrun="WORD_ELLIPSIS" AnchorPane.bottomAnchor="477.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="-9.0">
                <font>
                   <Font name="Corbel Light Italic" size="23.0" />
                </font>
@@ -34,26 +35,41 @@
                   <Bloom />
                </effect>
             </Label>
-            <Button fx:id="btn_ajouterC1" layoutX="437.0" layoutY="503.0" mnemonicParsing="false" onAction="#AjouterV" text="Ajouter" />
-            <ListView fx:id="listview" layoutX="365.0" layoutY="303.0" prefHeight="200.0" prefWidth="200.0" />
-            <ImageView fx:id="imgview" fitHeight="82.0" fitWidth="124.0" layoutX="449.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" />
-            <ChoiceBox fx:id="statutC" layoutX="401.0" layoutY="206.0" prefWidth="150.0" />
+            <Button fx:id="btn_ajouterC1" layoutX="598.0" layoutY="403.0" mnemonicParsing="false" onAction="#AjouterV" styleClass="add-btn" text="Ajouter" />
+            <ListView fx:id="listview" layoutX="310.0" layoutY="303.0" prefHeight="200.0" prefWidth="200.0" />
+            <ImageView fx:id="imgview" fitHeight="82.0" fitWidth="124.0" layoutX="658.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" />
+            <ChoiceBox fx:id="statutC" layoutX="401.0" layoutY="206.0" prefWidth="150.0" styleClass="add-btn" />
             <Label layoutX="343.0" layoutY="210.0" text="Statut" />
-            <ChoiceBox fx:id="areneC" layoutX="401.0" layoutY="174.0" prefWidth="150.0" />
-            <Label layoutX="334.0" layoutY="178.0" prefHeight="17.0" prefWidth="58.0" text="Arene" />
-            <Label layoutX="363.0" layoutY="117.0" text="Date" />
+            <ChoiceBox fx:id="areneC" layoutX="401.0" layoutY="174.0" prefWidth="150.0" styleClass="add-btn" />
+            <Label layoutX="341.0" layoutY="178.0" prefHeight="17.0" prefWidth="58.0" text="Arene" />
+            <Label layoutX="345.0" layoutY="118.0" text="Date" />
             <Label layoutX="357.0" layoutY="73.0" text="Nom" />
-            <JFXDatePicker fx:id="DateC" layoutX="407.0" layoutY="101.0" />
-            <JFXTimePicker fx:id="timeC" layoutX="407.0" layoutY="134.0" />
-            <Button fx:id="QR" layoutX="625.0" layoutY="503.0" mnemonicParsing="false" onAction="#QRcode" text="QR" />
+            <JFXDatePicker fx:id="DateC" layoutX="400.0" layoutY="106.0" styleClass="add-btn" />
+            <JFXTimePicker fx:id="timeC" layoutX="400.0" layoutY="135.0" styleClass="add-btn" />
+            <Button fx:id="QR" layoutX="609.0" layoutY="438.0" mnemonicParsing="false" onAction="#QRcode" styleClass="add-btn" text="QR" />
+            <AnchorPane layoutX="-1.0" prefHeight="551.0" prefWidth="209.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+               <children>
+                  <Button fx:id="backButton" layoutX="65.0" layoutY="498.0" mnemonicParsing="false" onAction="#retourB" styleClass="add-btn" text="retour" />
+                  <HBox layoutX="14.0" layoutY="42.0" prefHeight="100.0" prefWidth="200.0">
+                     <styleClass>
+                        <String fx:value="transparent" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <TextField fx:id="nomC" layoutX="399.0" layoutY="69.0" prefHeight="25.0" prefWidth="174.0" styleClass="add-btn" text="Inserer le nom" />
          </children>
       </AnchorPane>
-      <ImageView fitHeight="591.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@IMG/club-gallery-img3.jpg" />
-         </image>
-      </ImageView>
-      <TextField fx:id="nomC" layoutX="413.0" layoutY="68.0" prefHeight="25.0" prefWidth="174.0" text="Inserer le nom" />
-      <Button fx:id="backButton" layoutX="93.0" layoutY="501.0" mnemonicParsing="false" onAction="#retourB" text="retour" />
+      <Label layoutX="75.0" layoutY="47.0" text="Espace" textFill="#fcfcfc">
+         <font>
+            <Font name="Corbel Light" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="39.0" layoutY="91.0" text="Competition" textFill="WHITE">
+         <font>
+            <Font name="Corbel Light" size="25.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -11,6 +11,7 @@ import Entities.PerformanceC;
 import Entities.User;
 import Services.CompetitionService;
 import Services.PerformanceCService;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,11 +21,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 /**
@@ -64,6 +70,8 @@ public class AddPerformanceController implements Initializable {
     private Button ajouter;
      CompetitionService sp = new CompetitionService();
      PerformanceCService ps = new PerformanceCService();
+    @FXML
+    private Button retoub;
   
     /**
      * Initializes the controller class.
@@ -198,7 +206,13 @@ System.out.println(per);
  System.out.println(per.getIdcom().getId());
             // Call the addCompetition method from the service and add the competition
             ps.Add(per);
-
+             showAlert("succes", "Une performance est ajoutée");
+ FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
             // Clear input fields
             
             
@@ -216,4 +230,14 @@ System.out.println(per);
     alert.setContentText(message);
     alert.showAndWait();
 }
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
 }
