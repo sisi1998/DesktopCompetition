@@ -69,7 +69,8 @@ public void Add(PerformanceC c) {
 
     @Override
    public void Update(PerformanceC performance) {
-    String query = "UPDATE performance SET Apps = ?, Mins = ?, Buts = ?, PointsDecisives = ?, Jaune = ?, Rouge = ?, TpM = ?, Pr = ?, AerienG = ?, HdM = ?, Note = ? WHERE id = ?";
+       //competition_p_id,user_id,apps, mins, buts, points_decisives, jaune, rouge, Tp_m, pr, aeriens_g, hd_m, note
+    String query = "UPDATE performance_c SET apps = ?, mins = ?, buts = ?, points_decisives = ?, jaune = ?, rouge = ?, Tp_m = ?, pr = ?, aeriens_g = ?, hd_m = ?, note = ? WHERE id = ?";
     
     try {
         PreparedStatement statement = conn.prepareStatement(query);
@@ -87,6 +88,7 @@ public void Add(PerformanceC c) {
         statement.setString(10, performance.getHdM());
         statement.setString(11, performance.getNote());
         statement.setInt(12, performance.getId());
+        System.out.println(performance.getId());
 
         // Execute the prepared statement to update the performance in the database
         statement.executeUpdate();

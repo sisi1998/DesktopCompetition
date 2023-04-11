@@ -110,8 +110,8 @@ public class AdminUpdateCompetitionController implements Initializable {
                 AdminListCompetitionController irc = loader.getController();
                 CompetitionService sp = new CompetitionService();
 
-                 id = irc.competition.getId();
-                 System.out.println(irc.competition);
+                 id = AdminListCompetitionController.competition2.getId();
+                 System.out.println(id+"ttest333");
                  
 
             } catch (IOException ex) {
@@ -159,6 +159,7 @@ public class AdminUpdateCompetitionController implements Initializable {
         String dateString = date.format(DateTimeFormatter.ISO_LOCAL_DATE);
         Arena arena = areneC.getValue();
         String status = statutC.getValue();
+        Equipe winner = winnersE.getValue();
         MultipleSelectionModel<Equipe> selectionModel = listview.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
         ObservableList<Equipe> selectedItems = selectionModel.getSelectedItems();
@@ -178,10 +179,13 @@ public class AdminUpdateCompetitionController implements Initializable {
             showAlert("Compétition existante", "Une compétition avec la même date et la même arena existe déjà");
         } else {
             // Create a new competition object from the input values
-            Competition competition = new Competition(dateString+" "+formattedTime, arena, status, name, filePath);
+            //    public Competition(String date, Arena arena, String etat, Equipe equipe, String nom, String image) {
+
+            Competition competition = new Competition(dateString+" "+formattedTime, arena, status,winner, name, filePath);
 
             // Call the addCompetition method from the service and add the competition
             System.out.println(id);
+            System.out.println(competition.getIdwinner()+"ddd");
             sp.Update(competition, equipeList, id);
 
             // Clear input fields
@@ -243,7 +247,7 @@ public class AdminUpdateCompetitionController implements Initializable {
 
 
 
-   
+     
     public void setNom(String nom) {
     Platform.runLater(() -> nomC.setText(nom));
 }

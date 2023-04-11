@@ -131,6 +131,9 @@ public class Competition {
         this.image = image;
     }
 
+    
+    
+    
     public Competition(int id, String date, Arena Idarena, String etat, Equipe Idwinner, String nom, String image) {
         this.id = id;
         this.date = date;
@@ -163,5 +166,5 @@ public class Competition {
    public Competition() {
        
     }
-
+   
 }

@@ -83,6 +83,14 @@ public void Update(Competition c, List<Equipe> equipes, int id) {
             return;
         }
 
+        
+        
+        
+        
+        
+        
+        
+        
         // Update the competition object
         PreparedStatement updateStatement = conn.prepareStatement(updateQuery);
         updateStatement.setInt(1, c.getIdarena().getId());

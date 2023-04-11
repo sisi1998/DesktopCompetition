@@ -6,26 +6,26 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListPerformanceController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListPerformanceController">
    <children>
-      <TableView fx:id="tableview" layoutX="16.0" layoutY="97.0" prefHeight="400.0" prefWidth="669.0">
+      <TableView fx:id="tableview" layoutX="221.0" layoutY="97.0" prefHeight="400.0" prefWidth="550.0">
         <columns>
-          <TableColumn fx:id="joueur" text="Joueur" />
-          <TableColumn fx:id="competition" maxWidth="100.0" minWidth="3.0" text="Competition" />
+          <TableColumn fx:id="joueur" prefWidth="60.0" text="Joueur" />
+          <TableColumn fx:id="competition" maxWidth="123.0" minWidth="3.0" prefWidth="65.0" text="Competition" />
             <TableColumn fx:id="apps" minWidth="0.0" prefWidth="0.0" text="Column X" />
-            <TableColumn fx:id="mins" minWidth="0.0" prefWidth="120.0" text="Column X" />
-            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="60.0" text="Column X" />
-            <TableColumn fx:id="pd" prefWidth="60.0" text="Column X" />
-            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="60.0" text="Column X" />
-            <TableColumn fx:id="rouge" prefWidth="60.0" text="Column X" />
-            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="60.0" text="Column X" />
-            <TableColumn fx:id="pr" prefWidth="60.0" text="Column X" />
-            <TableColumn fx:id="ag" prefWidth="60.0" text="Column X" />
-            <TableColumn fx:id="hdm" prefWidth="60.0" text="Column X" />
-            <TableColumn fx:id="note" prefWidth="60.0" text="Column X" />
+            <TableColumn fx:id="mins" minWidth="0.0" prefWidth="40.0" text="mins" />
+            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="42.0" text="buts" />
+            <TableColumn fx:id="pd" prefWidth="40.0" text="pd" />
+            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="40.0" text="jaune" />
+            <TableColumn fx:id="rouge" prefWidth="40.0" text="rouge" />
+            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="40.0" text="tpm" />
+            <TableColumn fx:id="pr" prefWidth="40.0" text="pr" />
+            <TableColumn fx:id="ag" prefWidth="40.0" text="ag" />
+            <TableColumn fx:id="hdm" prefWidth="40.0" text="hdm" />
+            <TableColumn fx:id="note" prefWidth="56.0" text="note" />
         </columns>
       </TableView>
-      <Label layoutX="295.0" layoutY="65.0" text="Liste des Performancesl" />
-      <Button fx:id="delete" layoutX="594.0" layoutY="40.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Label layoutX="434.0" layoutY="65.0" text="Liste des Performancesl" />
+      <Button fx:id="delete" layoutX="652.0" layoutY="40.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
    </children>
 </AnchorPane>

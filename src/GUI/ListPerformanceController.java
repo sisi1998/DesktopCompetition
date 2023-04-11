@@ -5,26 +5,42 @@
  */
 package GUI;
 
+import Entities.Arena;
 import Entities.Competition;
+import Entities.Equipe;
 import Entities.PerformanceC;
 import Entities.User;
 import Services.CompetitionService;
 import Services.PerformanceCService;
+import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+
 
 /**
  * FXML Controller class
@@ -39,6 +55,7 @@ public class ListPerformanceController implements Initializable {
     private TableColumn<PerformanceC, Competition>  competition;
     @FXML
     private TableColumn<PerformanceC, String>  apps;
+    @FXML
     private TableColumn<PerformanceC, String>  mins;
     @FXML
     private TableColumn<PerformanceC, String> buts;
@@ -67,10 +84,22 @@ public class ListPerformanceController implements Initializable {
     @FXML
     private TableView<PerformanceC> tableview;
     @FXML
-    private Button CompButton;
-  
+    private Button delete;
+    
+    
+    
+    
+    private TableColumn<PerformanceC, Void> colModifBtn;
+    private TableColumn<PerformanceC, Void> colSuppBtn;
+    private TableColumn<PerformanceC, Void> colExpBtn;
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+     colModifBtn = new TableColumn<>("Modifier");
+    tableview.getColumns().add(colModifBtn);
        ObservableList<PerformanceC> list = FXCollections.observableArrayList();
         for (PerformanceC p : ps.affichage()) {
             list.add(p);
@@ -93,10 +122,81 @@ public class ListPerformanceController implements Initializable {
 
         // Load the data from the PerformanceCService into the TableView
         tableview.setItems(list);
+        addButtonModifToTable();
        
   
 }
+    
+     Button btn;
+    
+    public static PerformanceC perfs ;
+    public void addButtonModifToTable(){
+        Callback<TableColumn<PerformanceC, Void>, TableCell<PerformanceC, Void>> cellFactory = new Callback<TableColumn<PerformanceC, Void>, TableCell<PerformanceC, Void>>() {
+            @Override
+            public TableCell<PerformanceC, Void> call(final TableColumn<PerformanceC, Void> param) {
 
+                final TableCell<PerformanceC, Void> cell = new TableCell<PerformanceC, Void>() {
+
+                    {
+                        btn = new Button("Modifier");
+                        btn.setOnAction((ActionEvent event) -> {
+                            try {
+                              perfs = tableview.getSelectionModel().getSelectedItem();//
+                         
+                                
+                                  
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/UpdatePerformance.fxml"));
+                                Parent root = loader.load();
+                                UpdatePerformanceController  controller= loader.getController();
+                                System.out.println(perfs.getId()+"test");
+                                System.out.println(perfs);
+                            
+                            
+                            controller.setCom(perfs.getIdcom());
+                            controller.setJou(perfs.getIdjoueur());
+                            controller.setId(perfs.getId());
+                            System.out.println(perfs.getId()+"jjjjj");
+                            controller.setApps(perfs.getApps());
+                            controller.setMins(perfs.getMins());
+                            controller.setButs(perfs.getButs());
+                            controller.setPd(perfs.getPointsDecisives());
+                            controller.setJaune(perfs.getJaune());
+                            controller.setRouge(perfs.getRouge());
+                            controller.setTpm(perfs.getTpM());
+                           controller.setPr(perfs.getPr());
+                           controller.setAg(perfs.getAerienG());
+                           controller.setHdm(perfs.getHdM());
+                           controller.setNote(perfs.getNote());
+                           System.out.println(perfs);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colModifBtn.setCellFactory(cellFactory);
+    }
+
+    @FXML
     private void supprimer(ActionEvent event) {
           
 
@@ -125,8 +225,5 @@ public class ListPerformanceController implements Initializable {
 
     
     }
-
-    @FXML
-    private void ToComp(ActionEvent event) {
-    }
+   
 }

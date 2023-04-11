@@ -59,11 +59,11 @@ public class AdminListCompetitionController implements Initializable {
     private TableColumn<Competition, ImageView> image;
     @FXML
     private TableColumn<Competition, Equipe> winner;
- private TableColumn<Competition, Void> colModifBtn;
+    private TableColumn<Competition, Void> colModifBtn;
     private TableColumn<Competition, Void> colSuppBtn;
     private TableColumn<Competition, Void> colExpBtn;
     
-      CompetitionService sp = new CompetitionService();
+    CompetitionService sp = new CompetitionService();
     @FXML
     private Button PerfC;
     @FXML
@@ -180,7 +180,8 @@ public void initialize(URL url, ResourceBundle rb) {
 
      
     Button btn;
-   Competition competition = new Competition();
+    Competition competition = new Competition();
+    public static Competition competition2 ;
     public void addButtonModifToTable() {
         Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>> cellFactory = new Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>>() {
             @Override
@@ -194,11 +195,13 @@ public void initialize(URL url, ResourceBundle rb) {
                             try {
                               competition = tableview.getSelectionModel().getSelectedItem();//
                             System.out.println(competition);
-
+                                  competition2=competition;
+                                  
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminUpdateCompetition.fxml"));
                                 Parent root = loader.load();
                             AdminUpdateCompetitionController controller = loader.getController();
-                          System.out.println(competition);
+                            System.out.println(competition2.getId()+"test");
+                            
                             controller.setId(competition.getId());
                             controller.setNom(competition.getNom());
                             controller.setArena(competition.getArena());
@@ -207,7 +210,7 @@ public void initialize(URL url, ResourceBundle rb) {
                             controller.setDateAndTime(competition.getDate());
                             controller.setWinner(competition.getIdwinner());
                             controller.setImage(competition.getImage());
-                            System.out.println(competition.getNom());
+                            System.out.println(competition.getNom()+"test2");
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(new Scene(root));
                             stage.show();
