@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="225.0" prefWidth="184.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.PlayerRankController">
+   <children>
+      <ImageView fx:id="imageC" fitHeight="163.0" fitWidth="143.0" layoutX="21.0" layoutY="73.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/player-2.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="nomP" layoutX="14.0" layoutY="14.0" prefHeight="43.0" prefWidth="54.0" text="Nom">
+         <padding>
+            <Insets bottom="10.0" left="10.0" />
+         </padding>
+      </Label>
+      <Label fx:id="rangP" layoutX="128.0" layoutY="27.0" text="Rang" />
+   </children>
+</AnchorPane>

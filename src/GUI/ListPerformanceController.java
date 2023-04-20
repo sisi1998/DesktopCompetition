@@ -207,8 +207,6 @@ public class ListPerformanceController implements Initializable {
 
     @FXML
     private void supprimer(ActionEvent event) {
-          
-
     PerformanceC selectedPer = tableview.getSelectionModel().getSelectedItem();
     if (selectedPer == null) {
         Alert alert = new Alert(Alert.AlertType.WARNING);

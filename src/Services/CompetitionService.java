@@ -15,8 +15,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +49,7 @@ public class CompetitionService implements Iservice<Competition,Equipe> {
 
     @Override
    public void Add(Competition c, List<Equipe> equipes) {
-    String requete="INSERT INTO competition(arena_id,winner_id,date,etat,nom,image) VALUES (?, ?, ?, ?, ?, ?)";
+    String requete="INSERT INTO competition(arena_id,winner_id,date,etat,nom,image,codeqr) VALUES (?, ?, ?, ?, ?, ?,?)";
     String competitionEquipeQuery = "INSERT INTO competition_equipe(competition_id, equipe_id) VALUES (?, ?)";
     try {
         PreparedStatement pst=conn.prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
@@ -42,6 +59,7 @@ public class CompetitionService implements Iservice<Competition,Equipe> {
         pst.setString(4,c.getEtat());
         pst.setNull(2, java.sql.Types.INTEGER);
         pst.setString(6,c.getImage());
+         pst.setString(7,c.getCodeqr());
         pst.executeUpdate();
         // Retrieve the generated competition ID
         ResultSet generatedKeys = pst.getGeneratedKeys();
@@ -177,12 +195,14 @@ public List<Competition> affichage() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   @Override
-public boolean exists(String nom) {
-    String query = "SELECT * FROM competition WHERE nom=?";
+  @Override
+public boolean exists(String nom, String date, String arenaNom) {
+    String query = "SELECT c.* FROM competition c INNER JOIN arena a ON c.arena_id = a.id WHERE c.nom=? AND c.date=? AND a.nom=?";
     try {
         PreparedStatement pst = conn.prepareStatement(query);
         pst.setString(1, nom);
+        pst.setString(2, date);
+        pst.setString(3, arenaNom);
         ResultSet rs = pst.executeQuery();
         return rs.next(); // Returns true if ResultSet is not empty
     } catch (SQLException ex) {
@@ -190,6 +210,7 @@ public boolean exists(String nom) {
         return false;
     }
 }
+
 
     public void deleteImage(Integer id) {
         String filePath = "C:\\xampp\\htdocs\\imageV\\" + id + ".jpg";
@@ -294,6 +315,96 @@ public List<Equipe> getAllEquipes() {
     }
 
     return equipes;
+}
+private List<String> getEquipePlayerEmails(int competitionId) throws SQLException {
+    String query = "SELECT DISTINCT u.email " +
+                   "FROM user u " +
+                   "JOIN equipe e ON u.equipe_p_id = e.id " +
+                   "JOIN competition_equipe ce ON e.id = ce.equipe_id " +
+                   "WHERE ce.competition_id = ?";
+    List<String> playerEmails = new ArrayList<>();
+
+    PreparedStatement pst = conn.prepareStatement(query);
+    pst.setInt(1, competitionId);
+    ResultSet rs = pst.executeQuery();
+
+    while (rs.next()) {
+        String playerEmail = rs.getString("email");
+        playerEmails.add(playerEmail);
+    }
+
+    return playerEmails;
+}
+
+private void sendCompetitionReminderEmail(String playerEmail) {
+    String to = playerEmail;
+    String from = "goacademy66@gmail.com";
+    String password = "itqczwigkrkquytz";
+    String host = "smtp.gmail.com";
+
+    Properties properties = System.getProperties();
+    properties.setProperty("mail.smtp.host", host);
+    properties.setProperty("mail.smtp.auth", "true");
+    properties.setProperty("mail.smtp.starttls.enable", "true");
+    properties.setProperty("mail.smtp.port", "587");
+
+    Session session = Session.getDefaultInstance(properties, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(from, password);
+        }
+    });
+
+    try {
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(from));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        message.setSubject("Competition Reminder");
+        message.setText("Dear Player, Your competition is due in one day. Please be prepared.");
+        Transport.send(message);
+    } catch (MessagingException mex) {
+        mex.printStackTrace();
+    }
+}
+
+public void checkAllCompetitionsDueDate() throws ParseException {
+    String query = "SELECT id, date FROM competition";
+    List<Integer> dueCompetitions = new ArrayList<>();
+
+    try {
+        PreparedStatement pst = conn.prepareStatement(query);
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            int competitionId = rs.getInt("id");
+            String dateString = rs.getString("date");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date competitionDate = format.parse(dateString);
+
+            // calculate the time difference between the competition date and now
+            long timeDiffMillis = competitionDate.getTime() - System.currentTimeMillis();
+            long timeDiffHours = TimeUnit.MILLISECONDS.toHours(timeDiffMillis);
+
+            if (timeDiffHours <= 24) {
+                dueCompetitions.add(competitionId);
+
+                // get the email addresses of all players in the equipe associated with the competition
+                List<String> playerEmails = getEquipePlayerEmails(competitionId);
+
+                // send an email to each player
+                for (String playerEmail : playerEmails) {
+                    sendCompetitionReminderEmail(playerEmail);
+                }
+            }
+        }
+    } catch (SQLException | ParseException ex) {
+        Logger.getLogger(CompetitionService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    if (dueCompetitions.size() == 0) {
+        System.out.println("No competitions are due in the next 24 hours.");
+    } else {
+        System.out.println("The following competitions are due in the next 24 hours: " + dueCompetitions);
+    }
 }
 
 

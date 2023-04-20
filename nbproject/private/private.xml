@@ -5,18 +5,16 @@
             <url>src/GUI/AdminAddCompetitionController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>125</line>
+                <line>127</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/adminaddcompetition.css</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/Services/CompetitionService.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/Entities/Competition.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/AdminUpdateCompetitionController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/UpdatePerformanceController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/SortedPlayersController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/PerformanceFrontController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitionController.java</file>
         </group>
     </open-files>
 </project-private>

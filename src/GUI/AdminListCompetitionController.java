@@ -11,6 +11,7 @@ import Entities.Equipe;
 import Services.CompetitionService;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Optional;
 import javafx.scene.Node;
@@ -19,6 +20,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,9 +36,12 @@ import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 /**
@@ -64,6 +70,7 @@ public class AdminListCompetitionController implements Initializable {
     private TableColumn<Competition, Void> colExpBtn;
     
     CompetitionService sp = new CompetitionService();
+    ObservableList<Competition> obList;
     @FXML
     private Button PerfC;
     @FXML
@@ -77,6 +84,10 @@ public class AdminListCompetitionController implements Initializable {
 
 // Create a HashMap to store the ImageViews for each Competition
 private HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
+    @FXML
+    private Button send;
+    @FXML
+    private TextField recherche;
 
 /**
  * Initializes the controller class.
@@ -302,4 +313,69 @@ public void initialize(URL url, ResourceBundle rb) {
                             stage.show();
                             
     }
+
+    @FXML
+    private void sendMails(ActionEvent event) throws ParseException {
+        sp.checkAllCompetitionsDueDate();
+    }
+
+    @FXML
+    private void RechercheHandle(KeyEvent event) {
+          ObservableList<Competition> list = FXCollections.observableArrayList();
+    for (Competition u : sp.affichage()) {
+        list.add(u);
+        System.out.println();
+    }
+          FilteredList<Competition> filteredList = new FilteredList<>(list, b -> true);
+
+        recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (recherche.getText().isEmpty()) {
+
+                addButtonModifToTable();
+               
+
+            }
+            filteredList.setPredicate(cmp -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    btn = new Button("Modifier");
+                    
+
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+ if (String.valueOf(cmp.getNom()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
+
+                    return true;
+                } else if (String.valueOf(cmp.getDate()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
+
+                    return true;
+                } else if (String.valueOf(cmp.getArena().getNom()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
+
+                    return true;
+                    
+                    
+                }
+                else {
+                    btn = new Button("Modifier");
+                 
+                    return false;
+                }
+
+            });
+
+        });
+        SortedList<Competition> sortedData = new SortedList<>(filteredList);
+        sortedData.comparatorProperty().bind(tableview.comparatorProperty());
+
+        tableview.setItems(sortedData);
+
+    
+    }
+
+    @FXML
+    private void sendMails(MouseEvent event) {
+    }
+
+   
 }

@@ -14,10 +14,27 @@ import java.time.LocalDate;
 public class User {
     private int id;
     private  String nom, prenom;
+    private String image;
 
     @Override
     public String toString() {
         return nom ;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public User(int id, String nom, String prenom, String role) {

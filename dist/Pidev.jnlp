@@ -8,9 +8,14 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Pidev.jar" size="14166889" download="eager" />
+    <jar href="Pidev.jar" size="24014257" download="eager" />
+    <jar href="lib\activation-1.1.jar" size="62983" download="eager" />
+    <jar href="lib\core-3.5.1.jar" size="603414" download="eager" />
+    <jar href="lib\javax.mail-1.6.1.jar" size="654100" download="eager" />
     <jar href="lib\jfoenix-8.0.2.jar" size="2442326" download="eager" />
     <jar href="lib\jfoenix-8.0.3.jar" size="2452677" download="eager" />
+    <jar href="lib\jython-2.7.3.jar" size="37413343" download="eager" />
+    <jar href="lib\jython-installer-2.7.3.jar" size="89408837" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Pidev" >

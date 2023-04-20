@@ -22,6 +22,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -39,7 +42,16 @@ public class CompetitionFrontController implements Initializable {
     private GridPane compGrid;
     @FXML
     private Button perfButton;
-
+    public static Competition competition ;
+    @FXML
+    private Label CHcomp;
+    @FXML
+    private Label chDate;
+    @FXML
+    private Label CHare;
+    @FXML
+    private ImageView CHcodeqr;
+     private MyListener myListener;
     /**
      * Initializes the controller class.
      */
@@ -47,9 +59,22 @@ public class CompetitionFrontController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
  CompetitionService cp =new CompetitionService();
     List <Competition> Competitions = cp.affichage();
+    
+     if (Competitions.size() > 0) {
+            setChosenCompetition(Competitions.get(0));
+            myListener = new MyListener() {
+                @Override
+                public void onClickListener(Competition cmp) {
+                    setChosenCompetition (cmp);
+                }
+            };}
+    
+    
+    
+    
 int comuns =0;
 int row=1;
-    for(int i=0; i< Competitions.size();i++){
+   for(int i=0; i< Competitions.size();i++){
      try {
          FXMLLoader fxmlloader =new FXMLLoader();
          fxmlloader.setLocation(getClass().getResource("competition.fxml"));
@@ -85,6 +110,32 @@ int row=1;
                             stage.setScene(new Scene(root));
                             stage.show();
     }
-  
+    
+    
+      
+    private void setChosenCompetition(Competition cmp) {
+        CHcomp.setText(cmp.getNom());
+         CHare.setText(cmp.getArena().getNom());
+        chDate.setText(cmp.getDate());
+       String destDir = "file:///C:/xampp/htdocs/img/";
+        String imagePath = cmp.getCodeqr();
+     if (imagePath != null) {
+        try {
+            Image image = new Image(destDir+imagePath);
+            if (image.isError()) {
+                System.err.println("Error loading image from URL: " + imagePath);
+            
+            }
+            // Update the image property of the reusable ImageView
+            CHcodeqr.setImage(image);
+           
+        } catch (Exception e) {
+            System.err.println("Error loading image: " + e.getMessage());
+          
+        }
+    }
+        
+
+    }
    
 }

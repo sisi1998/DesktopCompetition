@@ -15,7 +15,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -199,5 +201,241 @@ public List<PerformanceC> affichage() {
 
     return performances;
 }
+public List<Object[]> moyperformance(int id) {
+    String query = "SELECT user.id, competition_p.id, performance_c.apps, performance_c.mins, performance_c.buts, performance_c.points_decisives, performance_c.jaune, performance_c.rouge, performance_c.tp_m, performance_c.pr, performance_c.hd_m "
+                 + "FROM performance_c "
+                 + "INNER JOIN user ON performance_c.user_id = user.id "
+                 + "INNER JOIN competition ON performance_c.competition_p_id = competition.id "
+                 + "WHERE user.id = ?";
+    
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+        statement.setInt(1, id);
+        ResultSet resultSet = statement.executeQuery();
+        
+        Map<String, List<Double>> scoresByCompetition = new HashMap<>();
+        
+        while (resultSet.next()) {
+            String competitionId = resultSet.getString("competition_p.id");
+            List<Double> scores = scoresByCompetition.computeIfAbsent(competitionId, k -> new ArrayList<>());
+            
+            double score = (Double.parseDouble(resultSet.getString("performance_c.apps")) * 10)
+                         + (Double.parseDouble(resultSet.getString("performance_c.mins")) * 10)
+                         + (Double.parseDouble(resultSet.getString("performance_c.buts")) * 20)
+                         + (Double.parseDouble(resultSet.getString("performance_c.points_decisives")) * 20)
+                         - (Double.parseDouble(resultSet.getString("performance_c.jaune")) * 20)
+                         - (Double.parseDouble(resultSet.getString("performance_c.rouge")) * 10)
+                         + (Double.parseDouble(resultSet.getString("performance_c.tp_m")) * 10)
+                         + (Double.parseDouble(resultSet.getString("performance_c.pr")) * 10)
+                         + (Double.parseDouble(resultSet.getString("performance_c.hd_m")) * 10);
+            
+            scores.add(score);
+        }
+        
+        List<Object[]> result = new ArrayList<>();
+        for (Map.Entry<String, List<Double>> entry : scoresByCompetition.entrySet()) {
+            String competitionId = entry.getKey();
+            List<Double> scores = entry.getValue();
+            
+            double average = scores.stream().mapToDouble(Double::doubleValue).average().orElse(0);
+            
+            Object[] row = new Object[3];
+            row[0] = id;
+            row[1] = competitionId;
+            row[2] = average;
+            
+            result.add(row);
+        }
+        
+        return result;
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        // Handle any exceptions that may occur
+    }
+    
+    return null; // or an empty list, depending on your requirements
+}
+
+public String getPlayerName(int playerId) {
+    String query = "SELECT nom FROM user WHERE id = ?";
+    
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+        statement.setInt(1, playerId);
+        ResultSet resultSet = statement.executeQuery();
+        
+        if (resultSet.next()) {
+            return resultSet.getString("prenom");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        // Handle any exceptions that may occur
+    }
+    
+    return null; // or an empty string, depending on your requirements
+}
+
+public String getPlayerlastName(int playerId) {
+    String query = "SELECT nom FROM user WHERE id = ?";
+    
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+        statement.setInt(1, playerId);
+        ResultSet resultSet = statement.executeQuery();
+        
+        if (resultSet.next()) {
+            return resultSet.getString("nom");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        // Handle any exceptions that may occur
+    }
+    
+    return null; // or an empty string, depending on your requirements
+}
+
+
+public List<User> rankPlayersByScore() {
+    List<User> players = new ArrayList<>();
+    Map<Integer, Double> playerScores = new HashMap<>();
+
+    // Loop through all player IDs
+    for (int playerId = 1; playerId <= getMaxPlayerId(); playerId++) {
+        // Get the average score for the player
+        List<Object[]> playerAverages = moyperformance(playerId);
+        if (playerAverages.size() > 0) { // Only rank players who have played in a competition
+            double averageScore = (double) playerAverages.get(0)[2];
+            playerScores.put(playerId, averageScore);
+        }
+    }
+
+    // Sort the players by score in descending order
+    List<Map.Entry<Integer, Double>> sortedPlayers = new ArrayList<>(playerScores.entrySet());
+    sortedPlayers.sort(Map.Entry.<Integer, Double>comparingByValue().reversed());
+
+    // Get the players in order
+    for (Map.Entry<Integer, Double> entry : sortedPlayers) {
+        int playerId = entry.getKey();
+        String playerName = getPlayerName(playerId);
+     
+         String playerlastName = getPlayerlastName(playerId);
+        User player = new User(playerId, playerName,playerlastName);
+        players.add(player);
+    }
+
+    return players;
+}
+
+
+private int getMaxPlayerId() {
+    String query = "SELECT MAX(id) FROM user";
+    
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getInt(1);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        // Handle any exceptions that may occur
+    }
+    
+    return 0;
+}
+
+
+ public int sumButs() {
+        String query = "SELECT SUM(CAST(buts AS INT)) FROM performance_c WHERE buts <> '0'";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                return 0; // or throw an exception, depending on your requirements
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // Handle any exceptions that may occur
+            return 0; // or throw an exception, depending on your requirements
+        }
+    }
+    
+    public int sumJaune() {
+        String query = "SELECT SUM(CAST(jaune AS INT)) FROM performance_c WHERE jaune <> '0'";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                return 0; // or throw an exception, depending on your requirements
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // Handle any exceptions that may occur
+            return 0; // or throw an exception, depending on your requirements
+        }
+    }
+    
+    public int sumTpM() {
+        String query = "SELECT SUM(CAST(tp_m AS INT)) FROM performance_c WHERE tp_m <> '0'";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                return 0; // or throw an exception, depending on your requirements
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // Handle any exceptions that may occur
+            return 0; // or throw an exception, depending on your requirements
+        }
+    }
+    
+    public int sumRouge() {
+        String query = "SELECT SUM(CAST(rouge AS INT)) FROM performance_c WHERE rouge <> '0'";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                return 0; // or throw an exception, depending on your requirements
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // Handle any exceptions that may occur
+            return 0; // or throw an exception, depending on your requirements
+        }
+    }
+    
+    public int sumPointsDecisives() {
+        String query = "SELECT SUM(CAST(points_decisives AS INT)) FROM performance_c WHERE points_decisives <> '0'";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                return 0; // or throw an exception, depending on your requirements
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // Handle any exceptions that may occur
+            return 0; // or throw an exception, depending on your requirements
+        }
+    }
+    
+   public int sumAeriensG() {
+String query = "SELECT SUM(CAST(aeriens_g AS INT)) FROM performance_c WHERE aeriens_g <> '0'";
+try (PreparedStatement statement = conn.prepareStatement(query)) {
+ResultSet resultSet = statement.executeQuery();
+if (resultSet.next()) {
+return resultSet.getInt(1);
+} else {
+return 0; // or throw an exception, depending on your requirements
+}
+} catch (SQLException ex) {
+ex.printStackTrace();
+// Handle any exceptions that may occur
+return 0; // or throw an exception, depending on your requirements
+}
+}
+
 
 }

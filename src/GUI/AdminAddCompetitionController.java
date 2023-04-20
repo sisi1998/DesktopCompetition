@@ -54,6 +54,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.text.DateFormatter;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Hashtable;
+
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -152,13 +168,26 @@ private void AjouterV(ActionEvent event) {
         } else if (sp.exists(dateString, arena.getId())) {
             showAlert("Compétition existante", "Une compétition avec la même date et la même arena existe déjà");
         } else {
-            // Create a new competition object from the input values
             Competition competition = new Competition(dateString+" "+formattedTime, arena, status, name, filePath);
+            System.out.println(competition);
+             BufferedImage qrCodeImage = GenerateQRCode.generateQRCodeForCompetition(competition);
+
+            // Save the QR code image as a file
+            final String QR_CODE_FILE_PATH = "C:/xampp/htdocs/img/" + dateString + "-" + arena.getId() + ".png";
+            File qrCodeFile = new File(QR_CODE_FILE_PATH);
+
+            try (OutputStream outputStream = new FileOutputStream(qrCodeFile)) {
+                ImageIO.write(qrCodeImage, "png", outputStream);
+            }
+
+            // Save the QR code image as a path in the database
+            String qrCodePath = qrCodeFile.getPath();
 
             // Call the addCompetition method from the service and add the competition
+            competition.setCodeqr(qrCodePath);
             sp.Add(competition, equipeList);
    showAlert("succes", "competition ajoutée");
-          
+    GenerateQRCode.generateQRCodeForCompetition(competition);
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
     Parent root = loader.load();
    AdminListCompetitionController controller = loader.getController();
@@ -222,6 +251,7 @@ private void AjouterV(ActionEvent event) {
 
     @FXML
     private void QRcode(ActionEvent event) {
+        
     }
 
     @FXML

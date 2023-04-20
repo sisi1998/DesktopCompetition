@@ -21,6 +21,25 @@ public class Competition {
  private Equipe Idwinner;
  private String nom;
   private String image;
+  private String codeqr;
+
+    public String getCodeqr() {
+        return codeqr;
+    }
+
+    public void setCodeqr(String codeqr) {
+        this.codeqr = codeqr;
+    }
+
+    public Competition(String date, Arena Idarena, String etat, Equipe Idwinner, String nom, String image, String codeqr) {
+        this.date = date;
+        this.Idarena = Idarena;
+        this.etat = etat;
+        this.Idwinner = Idwinner;
+        this.nom = nom;
+        this.image = image;
+        this.codeqr = codeqr;
+    }
  private List<PerformanceC> performances = new ArrayList<>();
 
     public int getId() {
@@ -165,6 +184,16 @@ public class Competition {
  
    public Competition() {
        
+    }
+   public Competition(String date, Arena arena, String etat,  String nom, String image,String codeqr) {
+        this.date = date;
+        this.Idarena = arena;
+        this.etat = etat;
+         this.codeqr = codeqr;
+       // this.Idwinner = equipe;
+        this.nom = nom;
+        this.image = image;
+        this.Idwinner = null;
     }
    
 }

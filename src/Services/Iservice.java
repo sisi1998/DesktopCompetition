@@ -19,5 +19,5 @@ public interface Iservice <T,C>{
       void Delete(int id);
       public List<T>affichage();
       public List <T>searchCompetition(T c) ;
-      public boolean exists(String Nom);
+      public boolean exists(String nom, String date, String arenaNom);
 }

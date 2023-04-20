@@ -65,6 +65,8 @@ public class PerformanceFrontController implements Initializable {
     private TableView<PerformanceC> tableview;
     @FXML
     private Button compB;
+    @FXML
+    private Button ranked;
    
    
   
@@ -108,6 +110,16 @@ public class PerformanceFrontController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/CompetitionFront.fxml"));
     Parent root = loader.load();
    CompetitionFrontController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void torank(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SortedPlayers.fxml"));
+    Parent root = loader.load();
+   SortedPlayersController controller = loader.getController();
      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(new Scene(root));
                             stage.show();

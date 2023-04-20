@@ -14,27 +14,27 @@
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PerformanceFrontController">
    <children>
-      <TableView fx:id="tableview" layoutX="244.0" layoutY="91.0" prefHeight="388.0" prefWidth="558.0">
+      <TableView fx:id="tableview" layoutX="242.0" layoutY="22.0" prefHeight="388.0" prefWidth="558.0">
          <columns>
-            <TableColumn fx:id="competition" maxWidth="107.0" minWidth="3.0" prefWidth="50.0" text="Competition" />
-            <TableColumn fx:id="joueur" prefWidth="53.0" text="Joueur" />
-            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="33.0" text="Apps" />
-            <TableColumn fx:id="mins" prefWidth="36.0" text="Mins" />
-            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="26.0" text="Buts" />
-            <TableColumn fx:id="pd" prefWidth="67.0" text="PointsD" />
-            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="40.0" text="C.Jaune" />
-            <TableColumn fx:id="rouge" prefWidth="45.0" text="C.Rouge" />
-            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="28.0" text="TpM" />
-            <TableColumn fx:id="pr" prefWidth="24.0" text="PR" />
+            <TableColumn fx:id="competition" maxWidth="107.0" minWidth="3.0" prefWidth="54.0" text="Competition" />
+            <TableColumn fx:id="joueur" prefWidth="69.0" text="Joueur" />
+            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="38.0" text="Apps" />
+            <TableColumn fx:id="mins" prefWidth="34.0" text="Mins" />
+            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="39.0" text="Buts" />
+            <TableColumn fx:id="pd" prefWidth="45.0" text="PointsD" />
+            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="38.0" text="C.Jaune" />
+            <TableColumn fx:id="rouge" prefWidth="46.0" text="C.Rouge" />
+            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="33.0" text="TpM" />
+            <TableColumn fx:id="pr" prefWidth="45.0" text="PR" />
             <TableColumn fx:id="ag" prefWidth="38.0" text="AeriensGagné" />
-            <TableColumn fx:id="hdm" prefWidth="28.0" text="HdM" />
-            <TableColumn fx:id="note" minWidth="0.0" prefWidth="35.0" text="Note" />
+            <TableColumn fx:id="hdm" prefWidth="50.0" text="HdM" />
+            <TableColumn fx:id="note" minWidth="0.0" prefWidth="28.0" text="Note" />
          </columns>
       </TableView>
-      <AnchorPane layoutX="-1.0" prefHeight="560.0" prefWidth="245.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+      <AnchorPane layoutX="-1.0" prefHeight="560.0" prefWidth="235.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
          <children>
             <Hyperlink layoutX="87.0" layoutY="252.0" text="Hyperlink" />
-            <ImageView fitHeight="508.0" fitWidth="225.0" layoutX="4.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="497.0" fitWidth="245.0" layoutX="7.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@IMG/club-gallery-img3.jpg" />
                </image>
@@ -47,6 +47,16 @@
             <Button fx:id="compB" layoutX="56.0" layoutY="477.0" mnemonicParsing="false" onAction="#ToComp" styleClass="search-button" text="Espace Competition" />
          </children>
       </AnchorPane>
+      <Label layoutX="260.0" layoutY="420.0" text="Mins: Minutes jouées" />
+      <Label layoutX="420.0" layoutY="420.0" text="Buts: Total Buts" />
+      <Label layoutX="408.0" layoutY="453.0" text="TpM: Tirs par match" />
+      <Label layoutX="577.0" layoutY="420.0" text="P.Décisives: Total Passes décisives" />
+      <Label layoutX="261.0" layoutY="453.0" text="Jau: Carton jaune" />
+      <Label layoutX="258.0" layoutY="481.0" text="Rou: Carton rouge" />
+      <Label layoutX="397.0" layoutY="481.0" text="HdM: Homme du match" />
+      <Label layoutX="589.0" layoutY="453.0" text="PR%: Taux de passes réussies" />
+      <Label layoutX="555.0" layoutY="481.0" text="AériensG: Duels aériens gagnés par match" />
+      <Button fx:id="ranked" layoutX="711.0" layoutY="521.0" mnemonicParsing="false" onAction="#torank" text="Button" />
    </children>
    <stylesheets>
       <URL value="@adminlistcompetition.css" />
