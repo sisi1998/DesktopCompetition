@@ -145,8 +145,8 @@ private void AjouterV(ActionEvent event) {
         String name = nomC.getText();
         LocalDate date = DateC.getValue();
         LocalTime selectedTime = timeC.getValue();
-         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-         String formattedTime = selectedTime.format(formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formattedTime = selectedTime.format(formatter);
         String dateString = date.format(DateTimeFormatter.ISO_LOCAL_DATE);
         Arena arena = areneC.getValue();
         String status = statutC.getValue();
@@ -163,41 +163,40 @@ private void AjouterV(ActionEvent event) {
             showAlert("Arena obligatoire", "Sélectionnez une Arena");
         } else if (status.isEmpty()) {
             showAlert("Statut obligatoire", "Sélectionnez un statut");
-        }  else if (equipeList.size() < 2) {
-    showAlert("Equipe obligatoire", "Sélectionnez au moins deux équipes");;
+        } else if (equipeList.size() < 2) {
+            showAlert("Equipe obligatoire", "Sélectionnez au moins deux équipes");
         } else if (sp.exists(dateString, arena.getId())) {
             showAlert("Compétition existante", "Une compétition avec la même date et la même arena existe déjà");
         } else {
-            Competition competition = new Competition(dateString+" "+formattedTime, arena, status, name, filePath);
-            System.out.println(competition);
-             BufferedImage qrCodeImage = GenerateQRCode.generateQRCodeForCompetition(competition);
+            Competition competition = new Competition(dateString + " " + formattedTime, arena, status, name, filePath);
+            BufferedImage qrCodeImage = GenerateQRCode.generateQRCodeForCompetition(competition);
 
             // Save the QR code image as a file
-            final String QR_CODE_FILE_PATH = "C:/xampp/htdocs/img/" + dateString + "-" + arena.getId() + ".png";
-            File qrCodeFile = new File(QR_CODE_FILE_PATH);
+            String fileName = dateString + "-" + arena.getId() + ".png";
+            String qrCodeFilePath = "C:/xampp/htdocs/img/" + fileName;
+            ImageIO.write(qrCodeImage, "png", new File(qrCodeFilePath));
 
-            try (OutputStream outputStream = new FileOutputStream(qrCodeFile)) {
-                ImageIO.write(qrCodeImage, "png", outputStream);
-            }
+            // Set the QR code file path in the competition object
+            competition.setCodeqr("/img/" + fileName);
+             System.out.println(competition.getCodeqr());
 
-            // Save the QR code image as a path in the database
-            String qrCodePath = qrCodeFile.getPath();
-
-            // Call the addCompetition method from the service and add the competition
-            competition.setCodeqr(qrCodePath);
+            // Add the competition to the database
             sp.Add(competition, equipeList);
-   showAlert("succes", "competition ajoutée");
-    GenerateQRCode.generateQRCodeForCompetition(competition);
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
-    Parent root = loader.load();
-   AdminListCompetitionController controller = loader.getController();
-     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(new Scene(root));
-                            stage.show();
+
+            showAlert("Succès", "La compétition a été ajoutée avec succès.");
+
+            // Navigate to the competition list page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+            Parent root = loader.load();
+            AdminListCompetitionController controller = loader.getController();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
 
             // Clear input fields
             nomC.clear();
             DateC.setValue(null);
+            timeC.setValue(null);
             areneC.setValue(null);
             statutC.setValue(null);
             imgview.setImage(null);
@@ -208,7 +207,6 @@ private void AjouterV(ActionEvent event) {
     }
 }
 
-        
        
     private void showAlert(String title, String message) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);

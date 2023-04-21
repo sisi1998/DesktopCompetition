@@ -12,5 +12,5 @@ import Entities.Competition;
  * @author Siwar
  */
 public interface MyListener {
-    public void onClickListener(Competition cmp);
+    public void onClickListener(Competition competition);
 }

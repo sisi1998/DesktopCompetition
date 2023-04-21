@@ -164,7 +164,7 @@ public void Update(Competition c, List<Equipe> equipes, int id) {
    @Override
 public List<Competition> affichage() {
     List<Competition> competitions = new ArrayList<>();
-    String query = "SELECT c.id, c.date, a.nom AS arena_nom, c.nom, e.nom AS winner_nom, c.etat, c.image "
+    String query = "SELECT c.id, c.date, a.nom AS arena_nom, c.nom, e.nom AS winner_nom, c.etat, c.image, c.codeqr "
                  + "FROM competition c "
                  + "JOIN arena a ON c.arena_id = a.id "
                  + "LEFT JOIN equipe e ON c.winner_id = e.id";
@@ -179,7 +179,8 @@ public List<Competition> affichage() {
             String winnerNom = resultSet.getString("winner_nom");
             String etat = resultSet.getString("etat");
             String image = resultSet.getString("image");
-            Competition competition = new Competition(id, date, new Arena(arenaNom), etat, new Equipe(winnerNom), nom, image);
+             String codeqr = resultSet.getString("codeqr");
+            Competition competition = new Competition(id, date, new Arena(arenaNom), etat, new Equipe(winnerNom), nom, image, codeqr);
             competitions.add(competition);
         }
     } catch (SQLException ex) {

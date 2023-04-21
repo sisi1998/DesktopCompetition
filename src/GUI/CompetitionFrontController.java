@@ -7,6 +7,7 @@ package GUI;
 
 import Entities.Competition;
 import Services.CompetitionService;
+import static java.awt.Color.blue;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -27,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -52,6 +54,8 @@ public class CompetitionFrontController implements Initializable {
     @FXML
     private ImageView CHcodeqr;
      private MyListener myListener;
+    @FXML
+    private AnchorPane chosenCompetitionCard;
     /**
      * Initializes the controller class.
      */
@@ -62,12 +66,8 @@ public class CompetitionFrontController implements Initializable {
     
      if (Competitions.size() > 0) {
             setChosenCompetition(Competitions.get(0));
-            myListener = new MyListener() {
-                @Override
-                public void onClickListener(Competition cmp) {
-                    setChosenCompetition (cmp);
-                }
-            };}
+            myListener = this::setChosenCompetition;
+     System.out.println(myListener);}
     
     
     
@@ -80,12 +80,15 @@ int row=1;
          fxmlloader.setLocation(getClass().getResource("competition.fxml"));
          AnchorPane cardbox = fxmlloader.load();
          CompetitionController competitionController =fxmlloader.getController();
-         competitionController.setData(Competitions.get(i));
-        if(comuns==2){
+         competitionController.setData(Competitions.get(i),myListener);
+        if(comuns==3){
             comuns=0;
         ++row;
         }
      compGrid.add(cardbox,comuns++, row);
+      compGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
+        compGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+          compGrid.setMaxWidth(Region.USE_COMPUTED_SIZE);
      GridPane.setMargin(cardbox, new Insets (10));
      
      
@@ -112,30 +115,34 @@ int row=1;
     }
     
     
-      
-    private void setChosenCompetition(Competition cmp) {
-        CHcomp.setText(cmp.getNom());
-         CHare.setText(cmp.getArena().getNom());
-        chDate.setText(cmp.getDate());
-       String destDir = "file:///C:/xampp/htdocs/img/";
-        String imagePath = cmp.getCodeqr();
-     if (imagePath != null) {
-        try {
-            Image image = new Image(destDir+imagePath);
-            if (image.isError()) {
-                System.err.println("Error loading image from URL: " + imagePath);
-            
-            }
+    
+    
+    
+    
+   private void setChosenCompetition(Competition cmp) {
+    CHcomp.setText(cmp.getNom());
+    CHare.setText(cmp.getArena().getNom());
+    chDate.setText(cmp.getDate());
+    
+    // Load the image from the file path
+    String imagePath = cmp.getCodeqr();
+    System.out.println(imagePath);
+    if (imagePath != null) {
+        String imageUrl = "file:///" + imagePath.replace("\\", "/");
+        Image image = new Image(imageUrl);
+        if (image.isError()) {
+            System.err.println("Error loading image from URL: " + imageUrl);
+        } else {
             // Update the image property of the reusable ImageView
             CHcodeqr.setImage(image);
-           
-        } catch (Exception e) {
-            System.err.println("Error loading image: " + e.getMessage());
-          
         }
     }
-        
+
+
+}
+
+
 
     }
    
-}
+

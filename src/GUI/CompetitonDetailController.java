@@ -58,6 +58,7 @@ public class CompetitonDetailController implements Initializable {
     private TextField winnerC;
        private int id;
      private Competition competition;
+     private MyListener mylistener;
      
     String filePath="";
     /**
@@ -82,7 +83,7 @@ public class CompetitonDetailController implements Initializable {
                // CompetitionController  irc = loader.getController();
                 CompetitionService sp = new CompetitionService();
 
-                 id =CompetitionController.competition.getId();
+             //    id =CompetitionController.competition.getId();
                  System.out.println(id+"ttest333");
                  
 

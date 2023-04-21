@@ -23,6 +23,19 @@ public class Competition {
   private String image;
   private String codeqr;
 
+    public Competition(int id, String date, Arena Idarena, String etat, Equipe Idwinner, String nom, String image, String codeqr) {
+        this.id = id;
+        this.date = date;
+        this.Idarena = Idarena;
+        this.etat = etat;
+        this.Idwinner = Idwinner;
+        this.nom = nom;
+        this.image = image;
+        this.codeqr = codeqr;
+    }
+
+    
+
     public String getCodeqr() {
         return codeqr;
     }

@@ -29,7 +29,7 @@
                </font>
             </Label>
             <Button fx:id="perfButton" layoutX="56.0" layoutY="477.0" mnemonicParsing="false" onAction="#Toperformance" styleClass="search-button" text="Espace Performance" />
-            <AnchorPane layoutX="18.0" layoutY="174.0" prefHeight="225.0" prefWidth="200.0" styleClass="chosen-fruit-card" stylesheets="@adminaddcompetition.css">
+            <AnchorPane fx:id="chosenCompetitionCard" layoutX="18.0" layoutY="174.0" prefHeight="225.0" prefWidth="200.0" styleClass="chosen-fruit-card" stylesheets="@adminaddcompetition.css">
                <children>
                   <Label fx:id="CHcomp" layoutX="56.0" layoutY="25.0" prefHeight="17.0" prefWidth="82.0" text=" Competition" />
                   <Label fx:id="chDate" layoutX="75.0" layoutY="58.0" text="Date" />
