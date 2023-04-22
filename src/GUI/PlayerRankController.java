@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -28,6 +29,8 @@ public class PlayerRankController implements Initializable {
     private Label nomP;
     @FXML
     private Label rangP;
+    @FXML
+    private AnchorPane payercard;
     
     
         public void setData(User cmp, int rang){

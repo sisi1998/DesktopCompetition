@@ -47,8 +47,8 @@ int row=1;
          fxmlloader.setLocation(getClass().getResource("PlayerRank.fxml"));
          AnchorPane cardbox = fxmlloader.load();
          PlayerRankController Controller =fxmlloader.getController();
-         Controller.setData(players.get(i),i);
-        if(comuns==2){
+         Controller.setData(players.get(i),i+1);
+        if(comuns==3){
             comuns=0;
         ++row;
         }

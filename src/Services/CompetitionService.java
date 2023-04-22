@@ -11,6 +11,7 @@ import Entities.Equipe;
 import Utils.DataSource;
 import java.io.File;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,11 +32,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import weka.core.Attribute;
+import weka.core.DenseInstance;
+import weka.core.Instances;
 
 /**
  *
@@ -43,7 +49,7 @@ import java.util.logging.Logger;
  */
 public class CompetitionService implements Iservice<Competition,Equipe> {
   private Connection conn;
-    
+    private static final String[] FEATURES = { "victoires", "defaites", "nuls", "but_marque", "but_encaisses" };
     public CompetitionService(){
     conn=DataSource.getInstance().getCnx();}
 
@@ -408,5 +414,130 @@ public void checkAllCompetitionsDueDate() throws ParseException {
     }
 }
 
-
+public Competition getCompetitionByCriteria(String nom, String date, String arenaNom) {
+    Competition competition = null;
+    String query = "SELECT c.id, c.date, a.nom AS arena_nom, c.nom, e.nom AS winner_nom, c.etat, c.image, c.codeqr "
+                 + "FROM competition c "
+                 + "JOIN arena a ON c.arena_id = a.id "
+                 + "LEFT JOIN equipe e ON c.winner_id = e.id "
+                 + "WHERE c.nom LIKE ? AND c.date LIKE ? AND a.nom LIKE ?";
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+        statement.setString(1, "%" + nom + "%");
+        statement.setString(2, date.substring(0, 10) + "%");
+        statement.setString(3, "%" + arenaNom + "%");
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String competitionDate = resultSet.getString("date");
+            String competitionArenaNom = resultSet.getString("arena_nom");
+            String competitionNom = resultSet.getString("nom");
+            String winnerNom = resultSet.getString("winner_nom");
+            String etat = resultSet.getString("etat");
+            String image = resultSet.getString("image");
+            String codeqr = resultSet.getString("codeqr");
+            Arena arena = new Arena(competitionArenaNom);
+            Equipe winner = new Equipe(winnerNom);
+            competition = new Competition(id, competitionDate, arena, etat, winner, competitionNom, image, codeqr);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(CompetitionService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return competition;
+}
+public List<Object[]> moyEquipe(int equipeId) {
+    String query = "SELECT e.id, AVG(p.but_marque + p.but_encaisses - p.nuls - p.defaites) as moyenne "
+                 + "FROM equipe AS e "
+                 + "JOIN performance_equipe AS p ON e.performance_e_id = p.id "
+                 + "WHERE e.id = ?";
+    
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+        statement.setInt(1, equipeId);
+        ResultSet resultSet = statement.executeQuery();
+        
+        List<Object[]> result = new ArrayList<>();
+        while (resultSet.next()) {
+            Object[] row = new Object[2];
+            row[0] = resultSet.getInt("e.id");
+            row[1] = resultSet.getDouble("moyenne");
+            result.add(row);
+        }
+        
+        return result;
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        // Handle any exceptions that may occur
+    }
+    
+    return null; // or an empty list, depending on your requirements
+}
+///////////////////////////////favoredequipe
+public Equipe getFavoredEquipe(int competitionId) {
+    List<Equipe> equipes = getEquipesByCompetitionId(competitionId);
+    Equipe favoredEquipe = null;
+    double highestAverage = Double.NEGATIVE_INFINITY;
+    
+    for (Equipe equipe : equipes) {
+        List<Object[]> moyEquipeResult = moyEquipe(equipe.getId());
+        
+        if (!moyEquipeResult.isEmpty()) {
+            double average = (double) moyEquipeResult.get(0)[1];
+            
+            if (average > highestAverage) {
+                favoredEquipe = equipe;
+                highestAverage = average;
+            }
+        }
+    }
+    
+    return favoredEquipe;
+}
+/////////////////////////////////////fevoredEquipes
+public List<Equipe> getFavoredEquipes(int competitionId) {
+    List<Equipe> equipes = getEquipesByCompetitionId(competitionId);
+    Map<Equipe, Double> averageScores = new HashMap<>();
+    
+    for (Equipe equipe : equipes) {
+        List<Object[]> moyEquipeResult = moyEquipe(equipe.getId());
+        
+        if (!moyEquipeResult.isEmpty()) {
+            double average = (double) moyEquipeResult.get(0)[1];
+            averageScores.put(equipe, average);
+        }
+    }
+    
+    List<Map.Entry<Equipe, Double>> sortedEntries = new ArrayList<>(averageScores.entrySet());
+    sortedEntries.sort(Map.Entry.<Equipe, Double>comparingByValue().reversed());
+    
+    List<Equipe> favoredEquipes = new ArrayList<>();
+    for (Map.Entry<Equipe, Double> entry : sortedEntries) {
+        favoredEquipes.add(entry.getKey());
+    }
+    
+    return favoredEquipes;
+}
+/////////////////favored list
+public List<Equipe> getFavoredEquipesForAllCompetitions() {
+    List<Equipe> favoredEquipes = new ArrayList<>();
+    String query = "SELECT id FROM competition";
+    
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+        ResultSet resultSet = statement.executeQuery();
+        
+        while (resultSet.next()) {
+            int competitionId = resultSet.getInt("id");
+            Equipe favoredEquipe = getFavoredEquipe(competitionId);
+            
+            if (favoredEquipe != null) {
+                favoredEquipes.add(favoredEquipe);
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        // Handle any exceptions that may occur
+    }
+    
+    return favoredEquipes;
+}
+;
+ 
 }

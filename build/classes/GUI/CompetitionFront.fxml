@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,20 +25,29 @@
                   <Image url="@IMG/club-gallery-img3.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="9.0" prefHeight="90.0" prefWidth="217.0" styleClass="shadow" stylesheets="@adminaddcompetition.css" text="Espace Competition" textFill="#ff580af9">
+            <Label layoutX="11.0" prefHeight="57.0" prefWidth="217.0" styleClass="shadow" stylesheets="@adminaddcompetition.css" text="Espace Competition" textFill="#ff580af9">
                <font>
                   <Font name="Impact" size="26.0" />
                </font>
             </Label>
-            <Button fx:id="perfButton" layoutX="56.0" layoutY="477.0" mnemonicParsing="false" onAction="#Toperformance" styleClass="search-button" text="Espace Performance" />
-            <AnchorPane fx:id="chosenCompetitionCard" layoutX="18.0" layoutY="174.0" prefHeight="225.0" prefWidth="200.0" styleClass="chosen-fruit-card" stylesheets="@adminaddcompetition.css">
+            <Button fx:id="perfButton" layoutX="55.0" layoutY="494.0" mnemonicParsing="false" onAction="#Toperformance" styleClass="search-button" text="Espace Performance" />
+            <AnchorPane fx:id="chosenCompetitionCard" layoutX="20.0" layoutY="213.0" prefHeight="248.0" prefWidth="200.0" stylesheets="@adminaddcompetition.css">
                <children>
-                  <Label fx:id="CHcomp" layoutX="56.0" layoutY="25.0" prefHeight="17.0" prefWidth="82.0" text=" Competition" />
-                  <Label fx:id="chDate" layoutX="75.0" layoutY="58.0" text="Date" />
-                  <Label fx:id="CHare" layoutX="75.0" layoutY="89.0" prefHeight="17.0" prefWidth="68.0" text="Arene" />
-                  <ImageView fx:id="CHcodeqr" fitHeight="81.0" fitWidth="88.0" layoutX="53.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="CHcomp" layoutX="47.0" layoutY="14.0" prefHeight="17.0" prefWidth="82.0" text=" Competition" />
+                  <Label fx:id="chDate" layoutX="54.0" layoutY="47.0" text="Date" />
+                  <Label fx:id="CHare" layoutX="54.0" layoutY="76.0" prefHeight="17.0" prefWidth="68.0" text="Arene" />
+                  <ImageView fx:id="CHcodeqr" fitHeight="116.0" fitWidth="149.0" layoutX="28.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="detail" layoutX="62.0" layoutY="211.0" mnemonicParsing="false" onAction="#GotoDetails" text="details" />
                </children>
+               <styleClass>
+                  <String fx:value="chosen-fruit-card" />
+                  <String fx:value="search-box" />
+               </styleClass>
             </AnchorPane>
+            <TextField fx:id="searchName" layoutX="42.0" layoutY="70.0" styleClass="search-box" />
+            <Button fx:id="searchCritere" layoutX="79.0" layoutY="168.0" mnemonicParsing="false" onAction="#searchCritereS" styleClass="search-button" text="Rechercher" />
+            <TextField fx:id="searchArena" layoutX="42.0" layoutY="132.0" styleClass="search-box" />
+            <TextField fx:id="searchDate" layoutX="42.0" layoutY="101.0" styleClass="search-box" />
          </children>
       </AnchorPane>
       <HBox layoutX="231.0" layoutY="13.0" prefHeight="525.0" prefWidth="553.0">

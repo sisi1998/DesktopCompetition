@@ -66,11 +66,10 @@ public class CompetitonDetailController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.competition = competition;
-        this.id = competition.getId();
+
           FXMLLoader loader = new FXMLLoader();
 
-            loader.setLocation(getClass().getResource("/GUI/Competition.fxml"));
+            loader.setLocation(getClass().getResource("/GUI/CompetitionFront.fxml"));
             Stage prStage = new Stage();
 
             Parent root;
@@ -79,11 +78,11 @@ public class CompetitonDetailController implements Initializable {
                 root = loader.load();
                 Scene scene = new Scene(root);
                 prStage.setScene(scene);
-                CompetitionController  irc = loader.getController();
-               // CompetitionController  irc = loader.getController();
-                CompetitionService sp = new CompetitionService();
-
-             //    id =CompetitionController.competition.getId();
+                
+              
+               // CompetitionService sp = new CompetitionService();
+ // CompetitionController  irc = loader.getController();
+              id =CompetitionFrontController.selectedCompetition.getId();
                  System.out.println(id+"ttest333");
                  
 
@@ -126,15 +125,36 @@ public void setWinner(Equipe eq) {
     System.out.println(eq);
 }
 
+
+// String destDir = "file:///C:/xampp/htdocs/img/";
+//    String imagePath = competition.getImage();
+//    if (imagePath != null) {
+//        try {
+//            Image image = new Image(destDir+imagePath);
+//            if (image.isError()) {
+//                System.err.println("Error loading image from URL: " + imagePath);
+//            }
+//            // Update the image property of the reusable ImageView
+//            imageC.setImage(image);
+//        } catch (Exception e) {
+//            System.err.println("Error loading image: " + e.getMessage());
+//        }
+//    }
+
 public void setImage(String img) {
+     String destDir = "file:///C:/xampp/htdocs/img/";
+     String imagePath = img;
+     if (imagePath != null) {
     Platform.runLater(() -> {
-        filePath = img;
-        File file = new File(img);
-        Image image = new Image(file.toURI().toString());
+         Image image = new Image(destDir+imagePath);
+          if (image.isError()) {
+                System.err.println("Error loading image from URL: " + imagePath);
+            }
+            // Update the image property of the reusable ImageView
         imageV.setImage(image);
     });
     
-}
+}}
 public void setCodeqr(String codeqr) {
     Platform.runLater(() -> {
         filePath = codeqr;

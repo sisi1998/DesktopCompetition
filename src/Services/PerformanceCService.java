@@ -202,7 +202,7 @@ public List<PerformanceC> affichage() {
     return performances;
 }
 public List<Object[]> moyperformance(int id) {
-    String query = "SELECT user.id, competition_p.id, performance_c.apps, performance_c.mins, performance_c.buts, performance_c.points_decisives, performance_c.jaune, performance_c.rouge, performance_c.tp_m, performance_c.pr, performance_c.hd_m "
+    String query = "SELECT user.id, competition.id, performance_c.apps, performance_c.mins, performance_c.buts, performance_c.points_decisives, performance_c.jaune, performance_c.rouge, performance_c.tp_m, performance_c.pr, performance_c.hd_m "
                  + "FROM performance_c "
                  + "INNER JOIN user ON performance_c.user_id = user.id "
                  + "INNER JOIN competition ON performance_c.competition_p_id = competition.id "
@@ -215,7 +215,7 @@ public List<Object[]> moyperformance(int id) {
         Map<String, List<Double>> scoresByCompetition = new HashMap<>();
         
         while (resultSet.next()) {
-            String competitionId = resultSet.getString("competition_p.id");
+            String competitionId = resultSet.getString("competition.id");
             List<Double> scores = scoresByCompetition.computeIfAbsent(competitionId, k -> new ArrayList<>());
             
             double score = (Double.parseDouble(resultSet.getString("performance_c.apps")) * 10)
@@ -256,7 +256,7 @@ public List<Object[]> moyperformance(int id) {
 }
 
 public String getPlayerName(int playerId) {
-    String query = "SELECT nom FROM user WHERE id = ?";
+    String query = "SELECT prenom FROM user WHERE id = ?";
     
     try (PreparedStatement statement = conn.prepareStatement(query)) {
         statement.setInt(1, playerId);

@@ -14,7 +14,17 @@ import java.time.LocalDate;
 public class User {
     private int id;
     private  String nom, prenom;
+
+    public Equipe getEquipe() {
+        return equipe;
+    }
+
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
+    }
     private String image;
+    private Equipe equipe;
+    
 
     @Override
     public String toString() {
