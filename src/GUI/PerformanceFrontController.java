@@ -9,6 +9,7 @@ import Entities.Competition;
 import Entities.PerformanceC;
 import Entities.User;
 import Services.PerformanceCService;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -67,6 +69,8 @@ public class PerformanceFrontController implements Initializable {
     private Button compB;
     @FXML
     private Button ranked;
+    @FXML
+    private Button pdf;
    
    
   
@@ -124,5 +128,25 @@ public class PerformanceFrontController implements Initializable {
                             stage.setScene(new Scene(root));
                             stage.show();
     }
+@FXML
+private void PDFGen(ActionEvent event) {
+    System.out.println("PDFGen button clicked");
+    FileChooser fileChooser = new FileChooser();
+
+    // Définir l'extension de fichier par défaut
+    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+    fileChooser.getExtensionFilters().add(extFilter);
+
+    // Afficher la boîte de dialogue pour enregistrer le fichier
+    File file = fileChooser.showSaveDialog(null);
+
+    if (file != null) {
+        System.out.println("Selected file: " + file.getAbsolutePath());
+        PDFGenerator pdfGenerator = new PDFGenerator();
+        pdfGenerator.generatePDF(ps.affichage(), file.getAbsolutePath());
+    }
+}
+
+    
     
 }

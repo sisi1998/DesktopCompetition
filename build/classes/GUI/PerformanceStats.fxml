@@ -11,12 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" styleClass="add-btn" stylesheets="@adminaddcompetition.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.PerformanceStatsController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" styleClass="add-btn" stylesheets="@adminaddcompetition.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PerformanceStatsController">
    <children>
-      <AnchorPane layoutX="254.0" layoutY="29.0" prefHeight="200.0" prefWidth="276.0">
+      <AnchorPane layoutX="192.0" layoutY="37.0" prefHeight="200.0" prefWidth="276.0">
          <children>
-            <LineChart fx:id="linechart" layoutX="102.0" layoutY="13.0" prefHeight="175.0" prefWidth="252.0" styleClass="shadow">
+            <LineChart fx:id="linechart" layoutX="102.0" layoutY="13.0" prefHeight="175.0" prefWidth="252.0" styleClass="shadow" stylesheets="@adminaddcompetition.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -31,13 +30,13 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="239.0" layoutY="289.0" prefHeight="189.0" prefWidth="211.0">
+      <AnchorPane layoutX="192.0" layoutY="293.0" prefHeight="189.0" prefWidth="211.0">
          <children>
             <PieChart fx:id="piechart" layoutY="28.0" prefHeight="175.0" prefWidth="228.0" styleClass="shadow" />
             <Label layoutX="14.0" layoutY="6.0" text="Taux des Notes" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="484.0" layoutY="241.0" prefHeight="270.0" prefWidth="295.0">
+      <AnchorPane layoutX="420.0" layoutY="252.0" prefHeight="270.0" prefWidth="295.0">
          <children>
             <StackedBarChart fx:id="barchart" layoutX="13.0" layoutY="53.0" prefHeight="210.0" prefWidth="269.0" styleClass="shadow">
               <xAxis>
