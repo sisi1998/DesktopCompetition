@@ -5,16 +5,23 @@
             <url>src/GUI/AdminAddCompetitionController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>127</line>
+                <line>134</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/SortedPlayersController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/PerformanceFrontController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitionController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitonDetailController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/FavoriteCompetitionController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/Services/CompetitionService.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/AdminAddCompetitionController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitionFrontController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/Services/PerformanceCService.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/PerformanceStatsController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/GenerateQRCode.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/FavoriteCompetition.fxml</file>
         </group>
     </open-files>
 </project-private>

@@ -23,7 +23,7 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage)throws Exception{
-        Parent root= FXMLLoader.load(getClass().getResource("PerformanceStats.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("FavoriteCompetition.fxml"));
         primaryStage.setTitle("Hello");
         primaryStage.setScene(new Scene(root, 700,550));
         primaryStage.show();

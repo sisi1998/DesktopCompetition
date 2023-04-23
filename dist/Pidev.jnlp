@@ -8,10 +8,12 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Pidev.jar" size="24025768" download="eager" />
+    <jar href="Pidev.jar" size="24029598" download="eager" />
     <jar href="lib\activation-1.1.jar" size="62983" download="eager" />
+    <jar href="lib\core-3.3.0.jar" size="541078" download="eager" />
     <jar href="lib\core-3.5.1.jar" size="603414" download="eager" />
     <jar href="lib\itextpdf-5.5.9.jar" size="2287148" download="eager" />
+    <jar href="lib\javase-3.3.0.jar" size="41451" download="eager" />
     <jar href="lib\javax.mail-1.6.1.jar" size="654100" download="eager" />
     <jar href="lib\jfoenix-8.0.2.jar" size="2442326" download="eager" />
     <jar href="lib\jfoenix-8.0.3.jar" size="2452677" download="eager" />

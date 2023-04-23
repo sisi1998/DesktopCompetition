@@ -55,9 +55,16 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.text.DateFormatter;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.BinaryBitmap;
 import com.google.zxing.EncodeHintType;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
 import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.awt.Color;
@@ -179,7 +186,9 @@ private void AjouterV(ActionEvent event) {
             // Set the QR code file path in the competition object
             competition.setCodeqr("/img/" + fileName);
              System.out.println(competition.getCodeqr());
-
+              File myfile = new File(qrCodeFilePath);
+ decodeQRCode(myfile);
+            
             // Add the competition to the database
             sp.Add(competition, equipeList);
 
@@ -263,6 +272,18 @@ private void AjouterV(ActionEvent event) {
     }
 
 
+  private static String decodeQRCode(File qrCodeimage) throws IOException {
+        BufferedImage bufferedImage = ImageIO.read(qrCodeimage);
+        LuminanceSource source = new BufferedImageLuminanceSource(bufferedImage);
+        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
+        try {
+            Result result = new MultiFormatReader().decode(bitmap);
+            return result.getText();
+        } catch (NotFoundException e) {
+            System.out.println("There is no QR code in the image");
+            return null;
+        }
+    }
    
 }

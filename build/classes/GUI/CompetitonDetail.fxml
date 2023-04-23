@@ -47,5 +47,7 @@
       <TextField fx:id="dateC" layoutX="607.0" layoutY="72.0" />
       <TextField fx:id="nomC" layoutX="607.0" layoutY="26.0" />
       <TextField fx:id="winnerC" layoutX="620.0" layoutY="193.0" />
+      <Label layoutX="567.0" layoutY="253.0" prefHeight="25.0" prefWidth="141.0" text="Favored Euipe" />
+      <Label fx:id="favoredN" layoutX="567.0" layoutY="280.0" prefHeight="17.0" prefWidth="122.0" />
    </children>
 </AnchorPane>

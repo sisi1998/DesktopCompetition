@@ -61,6 +61,8 @@ public class CompetitonDetailController implements Initializable {
      private MyListener mylistener;
      
     String filePath="";
+    @FXML
+    private Label favoredN;
     /**
      * Initializes the controller class.
      */
@@ -122,6 +124,10 @@ public void setDateAndTime(String dateAndTime) {
 
 public void setWinner(Equipe eq) {
     Platform.runLater(() -> winnerC.setText(eq.getNom()));
+    System.out.println(eq);
+}
+public void setfavored(Equipe eq) {
+    Platform.runLater(() -> favoredN.setText(eq.getNom()));
     System.out.println(eq);
 }
 
