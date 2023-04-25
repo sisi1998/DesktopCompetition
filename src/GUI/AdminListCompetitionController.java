@@ -249,83 +249,7 @@ public void initialize(URL url, ResourceBundle rb) {
 
         colModifBtn.setCellFactory(cellFactory);
     }
-
-    Button btnSupprimer;
-//
-//    public void addButtonDeleteToTable() {
-//        Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>> cellFactory = new Callback<TableColumn<Competition, Void>, TableCell<Competition, Void>>() {
-//            @Override
-//            public TableCell<Competition, Void> call(final TableColumn<Competition, Void> param) {
-//
-//                final TableCell<Competition, Void> cell = new TableCell<Competition, Void>() {
-//
-//                    {
-//                        btnSupprimer = new Button("Supprimer");
-//                        btnSupprimer = new Button("Supprimer");
-//                        btnSupprimer.setOnAction((ActionEvent event) -> {
-//
-//                            competition = tableview.getSelectionModel().getSelectedItem();
-//                         // showConfirmation(A);
-//                        });
-//                    }
-//
-//                    @Override
-//                    public void updateItem(Void item, boolean empty) {
-//                        super.updateItem(item, empty);
-//                        if (empty) {
-//                            setGraphic(null);
-//                        } else {
-//                            setGraphic(btnSupprimer);
-//                        }
-//                    }
-//                };
-//                return cell;
-//            }
-//        };
-//        colSuppBtn.setCellFactory(cellFactory);
-//
-//    }
-
-    @FXML
-    private void EspacePerformance(ActionEvent event) throws IOException {
-        
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
-    Parent root = loader.load();
-    ListPerformanceController controller = loader.getController();
-     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(new Scene(root));
-                            stage.show();
-                            
-    }
-
-    @FXML
-    private void espaceCompetition(ActionEvent event) {
-    }
-
-    @FXML
-    private void addCompetitionM(ActionEvent event) throws IOException {
-             
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminAddCompetition.fxml"));
-    Parent root = loader.load();
-   AdminAddCompetitionController controller = loader.getController();
-     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(new Scene(root));
-                            stage.show();
-                            
-    }
-
-    @FXML
-    private void sendMails(ActionEvent event) throws ParseException {
-        sp.checkAllCompetitionsDueDate();
-       Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Mail");
-        alert.setHeaderText(null);
-        alert.setContentText("les joeurs sont notifiés.");
-        alert.showAndWait();
-        return;
-    }
-
-    @FXML
+     @FXML
     private void RechercheHandle(KeyEvent event) {
           ObservableList<Competition> list = FXCollections.observableArrayList();
     for (Competition u : sp.affichage()) {
@@ -360,7 +284,9 @@ public void initialize(URL url, ResourceBundle rb) {
 
                     return true;
                     
-                    
+                     } else if (String.valueOf(cmp.getEtat()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
+
+                    return true;
                 }
                 else {
                     btn = new Button("Modifier");
@@ -379,6 +305,50 @@ public void initialize(URL url, ResourceBundle rb) {
     
     }
 
+
+    Button btnSupprimer;
+
+
+    @FXML
+    private void EspacePerformance(ActionEvent event) throws IOException {
+        
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+    ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                            
+    }
+
+    @FXML
+    private void espaceCompetition(ActionEvent event) {
+    }
+
+    @FXML
+    private void addCompetitionM(ActionEvent event) throws IOException {
+             
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminAddCompetition.fxml"));
+    Parent root = loader.load();
+   AdminAddCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                            
+    }
+
+    @FXML
+    private void sendMails(ActionEvent event) throws ParseException {
+        sp.checkAllCompetitionsDueDate();
+       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Mail");
+        alert.setHeaderText(null);
+        alert.setContentText("les joeurs sont notifiés.");
+        alert.showAndWait();
+        return;
+    }
+
+   
     @FXML
     private void sendMails(MouseEvent event) {
     }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMousePressed="#click" prefHeight="181.0" prefWidth="181.0" styleClass="button2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CompetitionController">
+<AnchorPane id="AnchorPane" onMousePressed="#click" prefHeight="181.0" prefWidth="181.0" style="-fx-background-color: #23395d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CompetitionController">
 <stylesheets>
         <URL value="@adminaddcompetition.css" />
       <URL value="@fullpackstyling.css" />
@@ -18,7 +18,7 @@
     
       
     <children>
-      <VBox fx:id="box" prefHeight="181.0" prefWidth="185.0">
+      <VBox fx:id="box" prefHeight="181.0" prefWidth="185.0" styleClass="transparent">
          <children>
             <HBox prefHeight="33.0" prefWidth="201.0">
                <children>

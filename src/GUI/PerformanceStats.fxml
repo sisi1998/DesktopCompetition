@@ -27,7 +27,7 @@
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis side="LEFT" tickLabelFill="WHITE" />
                     </yAxis>
                   </StackedBarChart>
                   <Label layoutX="106.0" layoutY="27.0" text="Paramètres divers" textFill="WHITE">
@@ -39,15 +39,33 @@
             </AnchorPane>
             <AnchorPane layoutX="502.0" layoutY="34.0" prefHeight="244.0" prefWidth="269.0" styleClass="shadow">
                <children>
-                  <PieChart fx:id="piechart" layoutX="10.0" layoutY="27.0" prefHeight="203.0" prefWidth="249.0" styleClass="shadow" />
+                  <PieChart fx:id="piechart" layoutX="10.0" layoutY="27.0" prefHeight="194.0" prefWidth="249.0" styleClass="shadow" />
                   <Label layoutX="62.0" layoutY="6.0" text="Taux des Notes" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="25.0" fitWidth="20.0" layoutX="14.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@IMG/maxresdefault.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="11.0" fitWidth="20.0" layoutX="97.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@IMG/téléchargement%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="20.0" layoutX="199.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@IMG/maxresdefault%20(1).jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="48.0" layoutY="221.0" text="&lt;10" textFill="WHITE" />
+                  <Label layoutX="121.0" layoutY="222.0" text="20&gt;Note&gt;10" textFill="WHITE" />
+                  <Label layoutX="231.0" layoutY="221.0" text="&gt;20" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <Pane layoutX="513.0" layoutY="315.0" prefHeight="252.0" prefWidth="260.0" style="-fx-background-radius: 20;" styleClass="button1" stylesheets="@fullpackstyling.css">
+            <Pane layoutX="512.0" layoutY="328.0" prefHeight="252.0" prefWidth="260.0" style="-fx-background-radius: 20;" styleClass="button1" stylesheets="@fullpackstyling.css">
                <children>
                   <ImageView fitHeight="185.0" fitWidth="145.0" layoutX="147.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,6 +79,8 @@
                   </Label>
                </children>
             </Pane>
+            <Line endX="100.0" layoutX="379.0" layoutY="-14.0" startX="100.0" startY="418.0" stroke="#b9b1b1" strokeDashOffset="2.0" />
+            <Button fx:id="Goback" layoutX="205.0" layoutY="555.0" mnemonicParsing="false" onAction="#GobackF" styleClass="add-btn" text="retour" />
             <Pane layoutX="512.0" layoutY="292.0" prefHeight="41.0" prefWidth="260.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@fullpackstyling.css">
                <children>
                   <Label layoutX="25.0" layoutY="4.0" prefHeight="31.0" prefWidth="260.0" text="Statistiques sur Nos joueurs" textFill="WHITE">
@@ -70,8 +90,6 @@
                   </Label>
                </children>
             </Pane>
-            <Line endX="100.0" layoutX="379.0" layoutY="-14.0" startX="100.0" startY="418.0" stroke="#b9b1b1" strokeDashOffset="2.0" />
-            <Button fx:id="Goback" layoutX="205.0" layoutY="555.0" mnemonicParsing="false" onAction="#GobackF" styleClass="add-btn" text="retour" />
          </children></AnchorPane>
       <AnchorPane layoutX="192.0" layoutY="37.0" prefHeight="200.0" prefWidth="276.0" styleClass="shadow">
          <children>
@@ -80,7 +98,7 @@
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis side="LEFT" tickLabelFill="WHITE" />
               </yAxis>
             </LineChart>
             <Label layoutX="40.0" layoutY="14.0" prefHeight="17.0" prefWidth="173.0" styleClass="image-view" text="Evolution des Joueurs" textFill="WHITE">
@@ -106,7 +124,8 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
    <stylesheets>
       <URL value="@adminaddcompetition.css" />

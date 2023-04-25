@@ -12,13 +12,8 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitonDetailController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/FavoriteCompetitionController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/Services/CompetitionService.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitionFrontController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/Entities/Competition.java</file>
             <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/AdminListCompetitionController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitonDetail.fxml</file>
         </group>
     </open-files>
 </project-private>
