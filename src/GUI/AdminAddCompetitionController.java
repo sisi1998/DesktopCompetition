@@ -63,6 +63,7 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -74,6 +75,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.FileSystems;
 import java.util.Hashtable;
 
 import javax.imageio.ImageIO;
@@ -119,9 +121,11 @@ public class AdminAddCompetitionController implements Initializable {
     @FXML
     private Button btn_ajouterC1;
     @FXML
-    private Button QR;
-    @FXML
     private Button backButton;
+    @FXML
+    private Button compC;
+    @FXML
+    private Button perfC1;
         
      
     
@@ -131,6 +135,7 @@ public class AdminAddCompetitionController implements Initializable {
      */
     @Override
 public void initialize(URL url, ResourceBundle rb) {
+    
     // Initialize the areneC and statutC ChoiceBoxes
     
     ObservableList<Arena> arenesList = FXCollections.observableArrayList(sp.getAllArenas());
@@ -175,19 +180,20 @@ private void AjouterV(ActionEvent event) {
         } else if (sp.exists(dateString, arena.getId())) {
             showAlert("Compétition existante", "Une compétition avec la même date et la même arena existe déjà");
         } else {
-            Competition competition = new Competition(dateString + " " + formattedTime, arena, status, name, filePath);
-            BufferedImage qrCodeImage = GenerateQRCode.generateQRCodeForCompetition(competition);
-
-            // Save the QR code image as a file
-            String fileName = dateString + "-" + arena.getId() + ".png";
+             String fileName = dateString + "-" + arena.getId() + ".png";
             String qrCodeFilePath = "C:/xampp/htdocs/img/" + fileName;
-            ImageIO.write(qrCodeImage, "png", new File(qrCodeFilePath));
+            Competition competition = new Competition(dateString + " " + formattedTime, arena, status, name, filePath);
+          //  BufferedImage qrCodeImage = GenerateQRCode.generateQRCodeForCompetition(competition);
+         generateQRCodeImage("Nom Competition:"+name+",\n arena:"+arena.getNom()+",\n date:"+dateString, 350, 350, qrCodeFilePath);
+            // Save the QR code image as a file
+           
+          //  ImageIO.write(qrCodeImage, "png", new File(qrCodeFilePath));
 
             // Set the QR code file path in the competition object
             competition.setCodeqr("/img/" + fileName);
              System.out.println(competition.getCodeqr());
-              File myfile = new File(qrCodeFilePath);
- decodeQRCode(myfile);
+            competition.setCodeqr(qrCodeFilePath);
+             
             
             // Add the competition to the database
             sp.Add(competition, equipeList);
@@ -256,10 +262,6 @@ private void AjouterV(ActionEvent event) {
     }
 }
 
-    @FXML
-    private void QRcode(ActionEvent event) {
-        
-    }
 
     @FXML
     private void retourB(ActionEvent event) throws IOException {
@@ -285,5 +287,39 @@ private void AjouterV(ActionEvent event) {
             return null;
         }
     }
-   
+ 
+
+
+    private static void generateQRCodeImage(String text, int width, int height, String filePath)
+            throws WriterException, IOException {
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
+
+        Path path = FileSystems.getDefault().getPath(filePath);
+        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+        
+        
+    }  
+
+    @FXML
+    private void espaceCompetition(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void espacePerformance(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+    
+    
 }

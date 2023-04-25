@@ -13,7 +13,7 @@
 }
 
 .right-bar{
-    -fx-background-color: #2D3047;
+    -fx-background-color: #001F3D;
 }
 
 .shadow{
@@ -35,6 +35,12 @@
     -fx-background-radius: 100;
 }
 
+
+.add-btn1{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
 .free-delivery-card{
     -fx-background-color: #D3D3D3;
     -fx-background-radius: 30;
@@ -51,4 +57,16 @@
 }
 .image-view {
     -fx-alignment: center;
+}
+.add-btn:hover
+{
+-fx-background-color : 
+#E55B13 ;
+-fx-background-radius :  30 0 0 30;
+}
+.add-btn:pressed
+{
+-fx-background-color : 
+#001F3D ;
+-fx-background-radius :  30 0 0 30;
 }

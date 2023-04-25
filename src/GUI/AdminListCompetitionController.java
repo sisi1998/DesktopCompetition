@@ -96,8 +96,8 @@ private HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
 public void initialize(URL url, ResourceBundle rb) {
     // Setting the URL
 
-    colSuppBtn = new TableColumn<>("Supprimer");
-    tableview.getColumns().add(colSuppBtn);
+   // colSuppBtn = new TableColumn<>("Supprimer");
+    //tableview.getColumns().add(colSuppBtn);
 
     colModifBtn = new TableColumn<>("Modifier");
     tableview.getColumns().add(colModifBtn);

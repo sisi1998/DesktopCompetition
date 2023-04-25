@@ -9,8 +9,11 @@ import Entities.Arena;
 import Entities.Competition;
 import Entities.Equipe;
 import Services.CompetitionService;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,6 +24,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,6 +33,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -63,6 +68,12 @@ public class CompetitonDetailController implements Initializable {
     String filePath="";
     @FXML
     private Label favoredN;
+    @FXML
+    private ImageView imgY;
+    @FXML
+    private Button back;
+    @FXML
+    private Button perfB;
     /**
      * Initializes the controller class.
      */
@@ -92,9 +103,6 @@ public class CompetitonDetailController implements Initializable {
             }
     }    
 
-    @FXML
-    private void ToComp(ActionEvent event) {
-    }
     
     
     
@@ -175,6 +183,42 @@ public void setId(int id) {
 
         this.id = id;
         System.out.println("her id " + idS);}
+
+    @FXML
+    private void Toperformance(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/PerformanceFront.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void imgTOyou(MouseEvent event) throws URISyntaxException, IOException {
+        URI youtubeLink = new URI("https://www.youtube.com/watch?v=MnBpFAo5FrI&ab_channel=Ligue1UberEats");
+    Desktop.getDesktop().browse(youtubeLink);
+    }
+
+    @FXML
+    private void GoBack(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/CompetitionFront.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void TopeCompetiob(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/CompetitionFront.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
 
 
 }

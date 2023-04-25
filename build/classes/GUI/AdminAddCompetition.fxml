@@ -10,24 +10,40 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorePaneEl" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminAddCompetitionController">
-    <stylesheets>
-        <URL value="@adminaddcompetition.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" fx:id="anchorePaneEl" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #001F3D;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminAddCompetitionController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="-7.0" prefHeight="550.0" prefWidth="800.0" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" layoutX="-7.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-radius: 80;" styleClass="linear-grad">
          <stylesheets>
             <URL value="@adminaddcompetition.css" />
          </stylesheets>
          <children>
-            <Label layoutX="310.0" layoutY="275.0" text="Liste des Equipes" />
-            <Button fx:id="Load_image" layoutX="593.0" layoutY="206.0" mnemonicParsing="false" onAction="#UploadImageHandle" styleClass="add-btn" text="image" />
-            <Label alignment="BASELINE_LEFT" cache="true" layoutX="350.0" layoutY="-9.0" prefHeight="32.0" prefWidth="198.0" text="Ajouter  une Competition" textAlignment="RIGHT" textOverrun="WORD_ELLIPSIS" AnchorPane.bottomAnchor="477.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="-9.0">
+            <AnchorPane layoutX="226.0" layoutY="100.0" prefHeight="294.0" prefWidth="555.0" style="-fx-background-radius: 40;" styleClass="right-bar">
+               <children>
+                  <Button fx:id="btn_ajouterC1" layoutX="358.0" layoutY="216.0" mnemonicParsing="false" onAction="#AjouterV" prefHeight="53.0" prefWidth="106.0" styleClass="add-btn" text="Ajouter" />
+                  <Button fx:id="Load_image" layoutX="91.0" layoutY="231.0" mnemonicParsing="false" onAction="#UploadImageHandle" styleClass="add-btn" text="image" />
+                  <Label layoutX="39.0" layoutY="75.0" text="Date" textFill="WHITE" />
+                  <Label layoutX="38.0" layoutY="31.0" text="Nom" textFill="WHITE" />
+                  <TextField fx:id="nomC" layoutX="91.0" layoutY="29.0" prefHeight="25.0" prefWidth="174.0" styleClass="add-btn1" text="Inserer le nom" />
+                  <JFXDatePicker fx:id="DateC" layoutX="93.0" layoutY="63.0" styleClass="add-btn1" />
+                  <JFXTimePicker fx:id="timeC" layoutX="93.0" layoutY="92.0" styleClass="add-btn1" />
+                  <Label layoutX="36.0" layoutY="148.0" prefHeight="17.0" prefWidth="58.0" text="Arene" textFill="WHITE" />
+                  <Label layoutX="36.0" layoutY="178.0" text="Statut" textFill="WHITE" />
+                  <ChoiceBox fx:id="areneC" layoutX="93.0" layoutY="144.0" prefHeight="25.0" prefWidth="171.0" styleClass="add-btn1" />
+                  <ChoiceBox fx:id="statutC" layoutX="93.0" layoutY="174.0" prefHeight="25.0" prefWidth="171.0" styleClass="add-btn1" />
+                  <ListView fx:id="listview" layoutX="311.0" layoutY="31.0" prefHeight="163.0" prefWidth="200.0" />
+                  <Label layoutX="365.0" layoutY="14.0" text="Liste des Equipes" textFill="WHITE" />
+                  <ImageView fx:id="imgview" fitHeight="75.0" fitWidth="98.0" layoutX="166.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true" />
+                  <Line endX="100.0" endY="94.0" layoutX="188.0" layoutY="-83.0" startX="100.0" startY="360.0" stroke="#b9b1b1" strokeDashOffset="2.0" />
+               </children>
+            </AnchorPane>
+            <Label alignment="BASELINE_LEFT" cache="true" layoutX="261.0" layoutY="-25.0" prefHeight="32.0" prefWidth="198.0" textAlignment="RIGHT" textOverrun="WORD_ELLIPSIS" AnchorPane.bottomAnchor="493.0" AnchorPane.leftAnchor="261.0" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="-25.0">
                <font>
                   <Font name="Corbel Light Italic" size="23.0" />
                </font>
@@ -35,41 +51,61 @@
                   <Bloom />
                </effect>
             </Label>
-            <Button fx:id="btn_ajouterC1" layoutX="598.0" layoutY="403.0" mnemonicParsing="false" onAction="#AjouterV" styleClass="add-btn" text="Ajouter" />
-            <ListView fx:id="listview" layoutX="310.0" layoutY="303.0" prefHeight="200.0" prefWidth="200.0" />
-            <ImageView fx:id="imgview" fitHeight="82.0" fitWidth="124.0" layoutX="658.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" />
-            <ChoiceBox fx:id="statutC" layoutX="401.0" layoutY="206.0" prefWidth="150.0" styleClass="add-btn" />
-            <Label layoutX="343.0" layoutY="210.0" text="Statut" />
-            <ChoiceBox fx:id="areneC" layoutX="401.0" layoutY="174.0" prefWidth="150.0" styleClass="add-btn" />
-            <Label layoutX="341.0" layoutY="178.0" prefHeight="17.0" prefWidth="58.0" text="Arene" />
-            <Label layoutX="345.0" layoutY="118.0" text="Date" />
-            <Label layoutX="357.0" layoutY="73.0" text="Nom" />
-            <JFXDatePicker fx:id="DateC" layoutX="400.0" layoutY="106.0" styleClass="add-btn" />
-            <JFXTimePicker fx:id="timeC" layoutX="400.0" layoutY="135.0" styleClass="add-btn" />
-            <Button fx:id="QR" layoutX="609.0" layoutY="438.0" mnemonicParsing="false" onAction="#QRcode" styleClass="add-btn" text="QR" />
-            <AnchorPane layoutX="-1.0" prefHeight="551.0" prefWidth="209.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+            <AnchorPane layoutX="-1.0" prefHeight="600.0" prefWidth="200.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
                <children>
-                  <Button fx:id="backButton" layoutX="65.0" layoutY="498.0" mnemonicParsing="false" onAction="#retourB" styleClass="add-btn" text="retour" />
-                  <HBox layoutX="14.0" layoutY="42.0" prefHeight="100.0" prefWidth="200.0">
+                  <Button fx:id="compC" layoutX="7.0" layoutY="69.0" mnemonicParsing="false" onAction="#espaceCompetition" prefHeight="75.0" prefWidth="200.0" text="Espace Competition" textFill="WHITE">
+                     <stylesheets>
+                        <URL value="@adminaddcompetition.css" />
+                        <URL value="@fullpackstyling.css" />
+                     </stylesheets>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
                      <styleClass>
-                        <String fx:value="transparent" />
-                        <String fx:value="shadow" />
+                        <String fx:value="linear-grad" />
+                        <String fx:value="button2" />
                      </styleClass>
-                  </HBox>
+                  </Button>
+                  <Button fx:id="perfC1" layoutX="7.0" layoutY="152.0" mnemonicParsing="false" onAction="#espacePerformance" prefHeight="75.0" prefWidth="200.0" styleClass="button2" text="Espace Performance" textFill="WHITE">
+                     <stylesheets>
+                        <URL value="@adminaddcompetition.css" />
+                        <URL value="@fullpackstyling.css" />
+                     </stylesheets>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
-            <TextField fx:id="nomC" layoutX="399.0" layoutY="69.0" prefHeight="25.0" prefWidth="174.0" styleClass="add-btn" text="Inserer le nom" />
+            <Pane layoutX="480.0" layoutY="18.0" prefHeight="82.0" prefWidth="302.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@fullpackstyling.css">
+               <children>
+                  <Label layoutX="21.0" layoutY="14.0" text="Admin" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="82.0" fitWidth="71.0" layoutX="211.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@IMG/coach.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="261.0" layoutY="69.0" prefHeight="31.0" prefWidth="249.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@fullpackstyling.css">
+               <children>
+                  <Label layoutX="14.0" layoutY="1.0" prefHeight="17.0" prefWidth="221.0" text="Ajouter  une Competition" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="backButton" layoutX="226.0" layoutY="561.0" mnemonicParsing="false" onAction="#retourB" styleClass="add-btn" text="retour" />
          </children>
       </AnchorPane>
-      <Label layoutX="75.0" layoutY="47.0" text="Espace" textFill="#fcfcfc">
-         <font>
-            <Font name="Corbel Light" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="39.0" layoutY="91.0" text="Competition" textFill="WHITE">
-         <font>
-            <Font name="Corbel Light" size="25.0" />
-         </font>
-      </Label>
    </children>
+   <stylesheets>
+      <URL value="@adminaddcompetition.css" />
+      <URL value="@fullpackstyling.css" />
+   </stylesheets>
 </AnchorPane>

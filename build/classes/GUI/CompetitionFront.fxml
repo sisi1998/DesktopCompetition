@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -14,45 +14,56 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CompetitionFrontController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="right-bar" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CompetitionFrontController">
     
    <children>
-      <AnchorPane prefHeight="550.0" prefWidth="233.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+      <AnchorPane prefHeight="600.0" prefWidth="222.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
          <children>
-            <Hyperlink layoutX="87.0" layoutY="252.0" text="Hyperlink" />
-            <ImageView fitHeight="508.0" fitWidth="225.0" layoutX="4.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@IMG/club-gallery-img3.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="11.0" prefHeight="57.0" prefWidth="217.0" styleClass="shadow" stylesheets="@adminaddcompetition.css" text="Espace Competition" textFill="#ff580af9">
-               <font>
-                  <Font name="Impact" size="26.0" />
-               </font>
-            </Label>
-            <Button fx:id="perfButton" layoutX="55.0" layoutY="494.0" mnemonicParsing="false" onAction="#Toperformance" styleClass="search-button" text="Espace Performance" />
-            <AnchorPane fx:id="chosenCompetitionCard" layoutX="20.0" layoutY="213.0" prefHeight="248.0" prefWidth="200.0" stylesheets="@adminaddcompetition.css">
+            <AnchorPane fx:id="chosenCompetitionCard" layoutX="20.0" layoutY="338.0" prefHeight="248.0" prefWidth="200.0" stylesheets="@adminaddcompetition.css">
                <children>
-                  <Label fx:id="CHcomp" layoutX="47.0" layoutY="14.0" prefHeight="17.0" prefWidth="82.0" text=" Competition" />
-                  <Label fx:id="chDate" layoutX="54.0" layoutY="47.0" text="Date" />
-                  <Label fx:id="CHare" layoutX="54.0" layoutY="76.0" prefHeight="17.0" prefWidth="68.0" text="Arene" />
-                  <ImageView fx:id="CHcodeqr" fitHeight="116.0" fitWidth="149.0" layoutX="28.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="detail" layoutX="62.0" layoutY="211.0" mnemonicParsing="false" onAction="#GotoDetails" text="details" />
+                  <Label fx:id="CHcomp" layoutX="49.0" layoutY="14.0" prefHeight="17.0" prefWidth="82.0" text=" Competition" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label fx:id="chDate" layoutX="22.0" layoutY="45.0" text="Date" textFill="WHITE" />
+                  <Label fx:id="CHare" layoutX="146.0" layoutY="45.0" prefHeight="17.0" prefWidth="43.0" text="Arene" textFill="WHITE" />
+                  <ImageView fx:id="CHcodeqr" fitHeight="120.0" fitWidth="132.0" layoutX="36.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="detail" layoutX="75.0" layoutY="209.0" mnemonicParsing="false" onAction="#GotoDetails" prefHeight="17.0" prefWidth="51.0" styleClass="add-btn" text="details">
+                     <stylesheets>
+                        <URL value="@fullpackstyling.css" />
+                        <URL value="@adminaddcompetition.css" />
+                     </stylesheets>
+                  </Button>
                </children>
                <styleClass>
-                  <String fx:value="chosen-fruit-card" />
-                  <String fx:value="search-box" />
+                  <String fx:value="add-btn" />
+                  <String fx:value="add-btn1" />
+                  <String fx:value="button1" />
                </styleClass>
             </AnchorPane>
-            <TextField fx:id="searchName" layoutX="42.0" layoutY="70.0" styleClass="search-box" />
-            <Button fx:id="searchCritere" layoutX="79.0" layoutY="168.0" mnemonicParsing="false" onAction="#searchCritereS" styleClass="search-button" text="Rechercher" />
-            <TextField fx:id="searchArena" layoutX="42.0" layoutY="132.0" styleClass="search-box" />
-            <TextField fx:id="searchDate" layoutX="42.0" layoutY="101.0" styleClass="search-box" />
+            <TextField fx:id="searchName" layoutX="45.0" layoutY="204.0" styleClass="search-box" />
+            <Button fx:id="searchCritere" layoutX="79.0" layoutY="306.0" mnemonicParsing="false" onAction="#searchCritereS" styleClass="add-btn" text="Rechercher" />
+            <TextField fx:id="searchArena" layoutX="42.0" layoutY="269.0" styleClass="search-box" />
+            <TextField fx:id="searchDate" layoutX="42.0" layoutY="236.0" styleClass="search-box" />
+            <Button fx:id="perfButton" layoutX="11.0" layoutY="130.0" mnemonicParsing="false" onAction="#Toperformance" prefHeight="46.0" prefWidth="217.0" styleClass="button1" text="Espace Performance" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="compButton1" layoutX="12.0" layoutY="77.0" mnemonicParsing="false" onAction="#Topcomp" prefHeight="46.0" prefWidth="217.0" styleClass="button1" text="Espace Competition" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="competition" fitHeight="127.0" fitWidth="120.0" layoutX="109.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@IMG/342556323_704667194998998_8201126061904933936_n.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <HBox layoutX="231.0" layoutY="13.0" prefHeight="525.0" prefWidth="553.0">
+      <HBox layoutX="233.0" layoutY="207.0" prefHeight="379.0" prefWidth="564.0" styleClass="linear-grad">
          <children>
-            <ScrollPane prefHeight="562.0" prefWidth="539.0">
+            <ScrollPane prefHeight="392.0" prefWidth="564.0">
                <content>
                   <GridPane fx:id="compGrid" prefHeight="30.0" prefWidth="0.0">
                     <rowConstraints>
@@ -61,6 +72,21 @@
                   </GridPane>
                </content>
             </ScrollPane>
-         </children></HBox>
+         </children>
+      </HBox>
+      <ImageView fx:id="imgY" fitHeight="199.0" fitWidth="564.0" layoutX="234.0" onMouseClicked="#imgTOyou" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 30;">
+         <image>
+            <Image url="@IMG/trophey-media-img.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="prevC" layoutX="250.0" layoutY="150.0" mnemonicParsing="false" onAction="#GoToPrev" prefHeight="25.0" prefWidth="139.0" styleClass="button4" text="Prévisions" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
+   <stylesheets>
+      <URL value="@adminaddcompetition.css" />
+      <URL value="@fullpackstyling.css" />
+   </stylesheets>
 </AnchorPane>

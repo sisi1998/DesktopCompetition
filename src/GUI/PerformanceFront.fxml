@@ -3,7 +3,6 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,52 +11,85 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PerformanceFrontController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PerformanceFrontController">
    <children>
-      <TableView fx:id="tableview" layoutX="242.0" layoutY="22.0" prefHeight="388.0" prefWidth="558.0">
-         <columns>
-            <TableColumn fx:id="competition" maxWidth="107.0" minWidth="3.0" prefWidth="54.0" text="Competition" />
-            <TableColumn fx:id="joueur" prefWidth="69.0" text="Joueur" />
-            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="38.0" text="Apps" />
-            <TableColumn fx:id="mins" prefWidth="34.0" text="Mins" />
-            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="39.0" text="Buts" />
-            <TableColumn fx:id="pd" prefWidth="45.0" text="PointsD" />
-            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="38.0" text="C.Jaune" />
-            <TableColumn fx:id="rouge" prefWidth="46.0" text="C.Rouge" />
-            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="33.0" text="TpM" />
-            <TableColumn fx:id="pr" prefWidth="45.0" text="PR" />
-            <TableColumn fx:id="ag" prefWidth="38.0" text="AeriensGagné" />
-            <TableColumn fx:id="hdm" prefWidth="50.0" text="HdM" />
-            <TableColumn fx:id="note" minWidth="0.0" prefWidth="28.0" text="Note" />
-         </columns>
-      </TableView>
-      <AnchorPane layoutX="-1.0" prefHeight="560.0" prefWidth="235.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+      <AnchorPane layoutX="-6.0" prefHeight="133.0" prefWidth="807.0" styleClass="button3" stylesheets="@fullpackstyling.css">
          <children>
-            <Hyperlink layoutX="87.0" layoutY="252.0" text="Hyperlink" />
-            <ImageView fitHeight="497.0" fitWidth="245.0" layoutX="7.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="448.0" layoutX="479.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@IMG/club-gallery-img3.jpg" />
+                  <Image url="@IMG/error-bg.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="16.0" layoutY="-17.0" prefHeight="90.0" prefWidth="218.0" styleClass="shadow" stylesheets="@adminaddcompetition.css" text="Espace Performance" textFill="#ff580af9">
+            <ImageView fitHeight="120.0" fitWidth="122.0" layoutX="12.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@IMG/342556323_704667194998998_8201126061904933936_n.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="perfButton1" layoutX="262.0" layoutY="67.0" mnemonicParsing="false" onAction="#Toperformance" prefHeight="46.0" prefWidth="217.0" styleClass="button1" stylesheets="@fullpackstyling.css" text="Espace Performance" textFill="WHITE">
                <font>
-                  <Font name="Impact" size="26.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-            </Label>
-            <Button fx:id="compB" layoutX="56.0" layoutY="477.0" mnemonicParsing="false" onAction="#ToComp" styleClass="search-button" text="Espace Competition" />
+            </Button>
+            <Button fx:id="compB" layoutX="262.0" layoutY="8.0" mnemonicParsing="false" onAction="#ToComp" prefHeight="46.0" prefWidth="217.0" styleClass="button1" stylesheets="@fullpackstyling.css" text="Espace Competition" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="ranked" layoutX="489.0" layoutY="18.0" mnemonicParsing="false" onAction="#torank" prefHeight="25.0" prefWidth="142.0" stylesheets="@fullpackstyling.css" text="RANGS DES JOUEURS" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button4" />
+                  <String fx:value="filler" />
+               </styleClass>
+            </Button>
+            <Button fx:id="pdf" layoutX="496.0" layoutY="54.0" mnemonicParsing="false" onAction="#PDFGen" styleClass="button4" text="Exporter en PDF" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <Label layoutX="260.0" layoutY="420.0" text="Mins: Minutes jouées" />
-      <Label layoutX="420.0" layoutY="420.0" text="Buts: Total Buts" />
-      <Label layoutX="408.0" layoutY="453.0" text="TpM: Tirs par match" />
-      <Label layoutX="577.0" layoutY="420.0" text="P.Décisives: Total Passes décisives" />
-      <Label layoutX="261.0" layoutY="453.0" text="Jau: Carton jaune" />
-      <Label layoutX="258.0" layoutY="481.0" text="Rou: Carton rouge" />
-      <Label layoutX="397.0" layoutY="481.0" text="HdM: Homme du match" />
-      <Label layoutX="589.0" layoutY="453.0" text="PR%: Taux de passes réussies" />
-      <Label layoutX="555.0" layoutY="481.0" text="AériensG: Duels aériens gagnés par match" />
-      <Button fx:id="ranked" layoutX="711.0" layoutY="521.0" mnemonicParsing="false" onAction="#torank" text="Button" />
-      <Button fx:id="pdf" layoutX="650.0" layoutY="521.0" mnemonicParsing="false" onAction="#PDFGen" text="PDF" />
+      <TableView fx:id="tableview" layoutY="133.0" prefHeight="365.0" prefWidth="801.0" stylesheets="@fullpackstyling.css">
+         <columns>
+            <TableColumn fx:id="competition" maxWidth="107.0" minWidth="3.0" prefWidth="75.0" text="Competition" />
+            <TableColumn fx:id="joueur" prefWidth="72.0" text="Joueur" />
+            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="48.0" text="Apps" />
+            <TableColumn fx:id="mins" minWidth="0.0" prefWidth="0.0" text="Mins" />
+            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="48.0" text="Buts" />
+            <TableColumn fx:id="pd" prefWidth="66.0" text="PointsD" />
+            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="67.0" text="Jau" />
+            <TableColumn fx:id="rouge" prefWidth="55.0" text="Rou" />
+            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="62.0" text="TpM" />
+            <TableColumn fx:id="pr" prefWidth="64.0" text="PR" />
+            <TableColumn fx:id="ag" prefWidth="87.0" text="AeriensGagné" />
+            <TableColumn fx:id="hdm" prefWidth="55.0" text="HdM" />
+            <TableColumn fx:id="note" minWidth="0.0" prefWidth="65.0" text="Note" />
+         </columns>
+      </TableView>
+      <AnchorPane layoutX="129.0" layoutY="497.0" prefHeight="104.0" prefWidth="672.0">
+         <children>
+            <Label layoutX="194.0" layoutY="56.0" text="Buts: Total Buts" textFill="WHITE" />
+            <Label layoutX="320.0" layoutY="25.0" text="TpM: Tirs par match" textFill="WHITE" />
+            <Label layoutX="31.0" layoutY="25.0" text="HdM: Homme du match" textFill="WHITE" />
+            <Label layoutX="31.0" layoutY="85.0" text="AériensG: Duels aériens gagnés par match" textFill="WHITE" />
+            <Label layoutX="456.0" layoutY="56.0" text="P.Décisives: Total Passes décisives" textFill="WHITE" />
+            <Label layoutX="456.0" layoutY="25.0" text="PR%: Taux de passes réussies" textFill="WHITE" />
+            <Label layoutX="194.0" layoutY="25.0" text="Rou: Carton rouge" textFill="WHITE" />
+            <Label layoutX="31.0" layoutY="56.0" text="Jau: Carton jaune" textFill="WHITE" />
+            <Label layoutX="317.0" layoutY="56.0" text="Mins: Minutes jouées" textFill="WHITE" />
+         </children>
+         <stylesheets>
+            <URL value="@adminaddcompetition.css" />
+            <URL value="@fullpackstyling.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="button3" />
+         </styleClass>
+      </AnchorPane>
+      <ImageView fitHeight="120.0" fitWidth="129.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/champ-logo.png" />
+         </image>
+      </ImageView>
    </children>
    <stylesheets>
       <URL value="@adminlistcompetition.css" />

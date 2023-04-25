@@ -72,6 +72,10 @@ public class AddPerformanceController implements Initializable {
      PerformanceCService ps = new PerformanceCService();
     @FXML
     private Button retoub;
+    @FXML
+    private Button compC;
+    @FXML
+    private Button perfC1;
   
     /**
      * Initializes the controller class.
@@ -233,6 +237,26 @@ System.out.println(per);
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void espaceCompetition(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminListCompetition.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void espacePerformance(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
     Parent root = loader.load();
    ListPerformanceController controller = loader.getController();

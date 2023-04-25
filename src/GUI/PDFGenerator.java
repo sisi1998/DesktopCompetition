@@ -13,6 +13,7 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -28,24 +29,30 @@ import java.util.List;
 public class PDFGenerator {
     
      public void generatePDF(List<PerformanceC> performances, String fileName) {
-Document document = new Document();
+    Document document = new Document();
     try {
         PdfWriter.getInstance(document, new FileOutputStream(fileName));
         document.open();
-        
+
         // Ajouter un titre en bleu au-dessus du tableau
         Paragraph title = new Paragraph("Les Performances", new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD, new BaseColor(33, 150, 243)));
         title.setAlignment(Element.ALIGN_CENTER);
         document.add(title);
         document.add(Chunk.NEWLINE);
-        
+
+        // Ajouter une image statique
+        Image image = Image.getInstance("C:\\Users\\Siwar\\Documents\\NetBeansProjects\\Pidev\\src\\GUI\\IMG\\342556323_704667194998998_8201126061904933936_n.png");
+        image.scaleAbsolute(100, 50);
+        image.setAlignment(Element.ALIGN_RIGHT);
+        document.add(image);
+
         PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100);
         // Ajouter des couleurs de fond et de bordure personnalisées pour la table
         table.getDefaultCell().setBackgroundColor(new BaseColor(217, 237, 247));
         table.getDefaultCell().setBorderColor(new BaseColor(33, 150, 243));
         table.getDefaultCell().setBorderWidth(2f);
-        
+
         PdfPCell cell;
         cell = new PdfPCell(new Phrase("ID"));
         cell.setBackgroundColor(new BaseColor(176, 224, 230));
@@ -63,14 +70,8 @@ Document document = new Document();
         cell.setBackgroundColor(new BaseColor(176, 224, 230));
         cell.setBorderWidth(2f);
         table.addCell(cell);
-        
-        
-//  private int id;
-//    private User Idjoueur;
-//     private Competition Idcom;
-//    private String Apps,Mins,Buts,PointsDecisives,Jaune,Rouge,TpM,Pr,AerienG,HdM,Note;
-       
-       //// performance
+
+        //// performance
         for (PerformanceC r : performances) {
             table.addCell(String.valueOf(r.getId()));
             table.addCell(r.getIdcom().getNom());
@@ -80,8 +81,10 @@ Document document = new Document();
         document.add(table);
         document.close();
     } catch (Exception e) {
+        e.printStackTrace();
     }
 }
+
 }
 
     

@@ -7,50 +7,77 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onDragDetected="#sendMails" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminListCompetitionController">
+<AnchorPane id="AnchorPane" onDragDetected="#sendMails" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #001F3D;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminListCompetitionController">
     <stylesheets>
         <URL value="@adminaddcompetition.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tableview" layoutX="201.0" layoutY="91.0" prefHeight="368.0" prefWidth="599.0">
-         <columns>
-            <TableColumn fx:id="nom" prefWidth="54.0" text="Nom" />
-            <TableColumn fx:id="arene" prefWidth="82.0" text="Arene" />
-            <TableColumn fx:id="date" prefWidth="127.0" text="Date" />
-            <TableColumn fx:id="statut" prefWidth="41.0" text="Statut" />
-            <TableColumn fx:id="image" prefWidth="75.0" text="Image" />
-            <TableColumn fx:id="winner" prefWidth="55.0" text="Gagnant" />
-         </columns>
-      </TableView>
-      <Button fx:id="addCompetition" layoutX="251.0" layoutY="46.0" mnemonicParsing="false" onAction="#addCompetitionM" styleClass="add-btn" text="Ajouter Une Competition" />
-      <Button fx:id="delete" layoutX="200.0" layoutY="467.0" mnemonicParsing="false" onAction="#supprimerC" styleClass="add-btn" text="Delete" />
-      <AnchorPane prefHeight="550.0" prefWidth="200.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+      <AnchorPane prefHeight="600.0" prefWidth="783.0" style="-fx-background-radius: 70;" styleClass="linear-grad" stylesheets="@fullpackstyling.css">
          <children>
-            <Button fx:id="compC" layoutX="29.0" layoutY="458.0" mnemonicParsing="false" onAction="#espaceCompetition" styleClass="search-box" stylesheets="@adminaddcompetition.css" text="Espace Competition" />
-            <Button fx:id="PerfC" layoutX="28.0" layoutY="494.0" mnemonicParsing="false" onAction="#EspacePerformance" styleClass="search-box" text="Espace Performance" />
-            <HBox layoutX="1.0" layoutY="31.0" prefHeight="100.0" prefWidth="200.0">
-               <styleClass>
-                  <String fx:value="transparent" />
-                  <String fx:value="shadow" />
-               </styleClass>
-            </HBox>
-            <Label layoutX="65.0" layoutY="37.0" text="Espace" textFill="#fcfcfc">
-               <font>
-                  <Font name="Corbel Light" size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="29.0" layoutY="81.0" text="Competiton" textFill="WHITE">
-               <font>
-                  <Font name="Corbel Light" size="25.0" />
-               </font>
-            </Label>
+            <Button fx:id="addCompetition" layoutX="294.0" layoutY="508.0" mnemonicParsing="false" onAction="#addCompetitionM" styleClass="add-btn" text="Ajouter Une Competition" />
+            <Button fx:id="delete" layoutX="208.0" layoutY="508.0" mnemonicParsing="false" onAction="#supprimerC" styleClass="add-btn" text="Supprimer" />
+            <Pane layoutX="528.0" layoutY="21.0" prefHeight="112.0" prefWidth="245.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@fullpackstyling.css">
+               <children>
+                  <Label layoutX="21.0" layoutY="14.0" text="Admin" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="112.0" fitWidth="71.0" layoutX="174.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@IMG/coach.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <TableView fx:id="tableview" layoutX="217.0" layoutY="133.0" prefHeight="364.0" prefWidth="552.0" stylesheets="@fullpackstyling.css">
+               <columns>
+                  <TableColumn fx:id="nom" prefWidth="75.0" text="Nom" />
+                  <TableColumn fx:id="arene" prefWidth="81.0" text="Arene" />
+                  <TableColumn fx:id="date" prefWidth="98.0" text="Date" />
+                  <TableColumn fx:id="statut" prefWidth="67.0" text="Statut" />
+                  <TableColumn fx:id="image" prefWidth="75.0" text="Image" />
+                  <TableColumn fx:id="winner" prefWidth="75.0" text="Gagnant" />
+               </columns>
+            </TableView>
+            <Button fx:id="send" layoutX="672.0" layoutY="508.0" mnemonicParsing="false" onAction="#sendMails" styleClass="add-btn" stylesheets="@fullpackstyling.css" text="Envoyer " />
+            <Pane layoutX="208.0" layoutY="65.0" prefHeight="67.0" prefWidth="320.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@fullpackstyling.css">
+               <children>
+                  <TextField fx:id="recherche" layoutX="146.0" layoutY="34.0" onKeyPressed="#RechercheHandle" styleClass="search-box" stylesheets="@adminaddcompetition.css" />
+                  <Label layoutX="12.0" layoutY="1.0" text="Vous Chercher une competition ?" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
-      <Button fx:id="send" layoutX="689.0" layoutY="28.0" mnemonicParsing="false" onAction="#sendMails" text="send Mails" />
-      <TextField fx:id="recherche" layoutX="441.0" layoutY="46.0" onKeyPressed="#RechercheHandle" />
+      <AnchorPane prefHeight="600.0" prefWidth="201.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+         <children>
+            <Button fx:id="compC" layoutY="61.0" mnemonicParsing="false" onAction="#espaceCompetition" prefHeight="80.0" prefWidth="201.0" text="Espace Competition" textFill="WHITE">
+               <stylesheets>
+                  <URL value="@fullpackstyling.css" />
+                  <URL value="@adminaddcompetition.css" />
+               </stylesheets>
+               <styleClass>
+                  <String fx:value="linear-grad" />
+                  <String fx:value="button2" />
+               </styleClass>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <Button fx:id="PerfC" layoutY="149.0" mnemonicParsing="false" onAction="#EspacePerformance" prefHeight="87.0" prefWidth="201.0" styleClass="button2" stylesheets="@fullpackstyling.css" text="Espace Performance" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

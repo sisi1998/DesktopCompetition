@@ -101,6 +101,8 @@ public class ListPerformanceController implements Initializable {
     private Button compC;
     @FXML
     private Button PerfC;
+    @FXML
+    private Button stats;
     
     
     
@@ -264,7 +266,24 @@ public class ListPerformanceController implements Initializable {
     }
 
     @FXML
-    private void EspacePerformance(ActionEvent event) {
+    private void EspacePerformance(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+   AdminListCompetitionController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
     }
+
+    @FXML
+    private void GoStats(ActionEvent event) throws IOException { 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/PerformanceStats.fxml"));
+    Parent root = loader.load();
+   PerformanceStatsController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+    
    
 }

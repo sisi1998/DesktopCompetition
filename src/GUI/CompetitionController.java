@@ -76,6 +76,9 @@ public class CompetitionController implements Initializable {
             }
             // Update the image property of the reusable ImageView
             imageC.setImage(image);
+            imageC.setFitWidth(120);
+imageC.setFitHeight(150);
+
         } catch (Exception e) {
             System.err.println("Error loading image: " + e.getMessage());
         }

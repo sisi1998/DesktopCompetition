@@ -1,17 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FavoriteCompetitionController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" styleClass="right-bar" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FavoriteCompetitionController">
    <children>
-      <TableView fx:id="tableview" layoutX="390.0" layoutY="14.0" prefHeight="528.0" prefWidth="299.0">
+      <TableView fx:id="tableview" layoutX="241.0" layoutY="85.0" prefHeight="466.0" prefWidth="307.0">
         <columns>
           <TableColumn fx:id="cmpC" prefWidth="98.0" text="Competition" />
           <TableColumn fx:id="equipeC" prefWidth="87.0" text="Equipe favoris" />
             <TableColumn fx:id="image" prefWidth="114.0" />
         </columns>
+         <stylesheets>
+            <URL value="@adminaddcompetition.css" />
+            <URL value="@fullpackstyling.css" />
+         </stylesheets>
       </TableView>
+      <Label layoutX="212.0" layoutY="14.0" prefHeight="28.0" prefWidth="307.0" text="Les équipes en série de victoires" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="282.0" layoutY="43.0" prefHeight="15.0" prefWidth="134.0" text="Consultez nos prévisions " textFill="WHITE" />
+      <ImageView fitHeight="203.0" fitWidth="230.0" layoutX="5.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/trophy-42177.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="120.0" fitWidth="122.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/342556323_704667194998998_8201126061904933936_n.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="perfButton1" layoutX="596.0" layoutY="5.0" mnemonicParsing="false" onAction="#Toperformance" prefHeight="46.0" prefWidth="217.0" styleClass="button1" stylesheets="@fullpackstyling.css" text="Espace Performance" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="compB" layoutX="596.0" layoutY="62.0" mnemonicParsing="false" onAction="#ToComp" prefHeight="46.0" prefWidth="217.0" styleClass="button1" stylesheets="@fullpackstyling.css" text="Espace Competition" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="Goback" layoutX="26.0" layoutY="507.0" mnemonicParsing="false" onAction="#goBck" styleClass="add-btn" text="retour" />
+      <ImageView fitHeight="203.0" fitWidth="230.0" layoutX="550.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/trophy-42177.png" />
+         </image>
+      </ImageView>
    </children>
+   <stylesheets>
+      <URL value="@fullpackstyling.css" />
+      <URL value="@adminaddcompetition.css" />
+   </stylesheets>
 </AnchorPane>

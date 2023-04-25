@@ -73,6 +73,8 @@ public class UpdatePerformanceController implements Initializable {
     private Button compC;
     @FXML
     private Button PerfC;
+    @FXML
+    private Button Goback;
     /**
      * Initializes the controller class.
      */
@@ -304,6 +306,16 @@ public class UpdatePerformanceController implements Initializable {
                             stage.setScene(new Scene(root));
                             stage.show();
 
+    }
+
+    @FXML
+    private void goBckF(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ListPerformance.fxml"));
+    Parent root = loader.load();
+  ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
     }
     
     

@@ -1,67 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListPerformanceController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="850.0" styleClass="right-bar" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListPerformanceController">
    <children>
-      <TableView fx:id="tableview" layoutX="189.0" layoutY="51.0" prefHeight="400.0" prefWidth="617.0">
-        <columns>
-          <TableColumn fx:id="joueur" prefWidth="60.0" text="Joueur" />
-          <TableColumn fx:id="competition" maxWidth="123.0" minWidth="3.0" prefWidth="65.0" text="Competition" />
-            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="34.0" text="Apps" />
-            <TableColumn fx:id="mins" minWidth="0.0" prefWidth="24.0" text="mins" />
-            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="34.0" text="buts" />
-            <TableColumn fx:id="pd" prefWidth="38.0" text="pd" />
-            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="32.0" text="jaune" />
-            <TableColumn fx:id="rouge" prefWidth="48.0" text="rouge" />
-            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="32.0" text="tpm" />
-            <TableColumn fx:id="pr" prefWidth="40.0" text="pr" />
-            <TableColumn fx:id="ag" prefWidth="40.0" text="ag" />
-            <TableColumn fx:id="hdm" prefWidth="40.0" text="hdm" />
-            <TableColumn fx:id="note" prefWidth="56.0" text="note" />
-        </columns>
-      </TableView>
-      <Button fx:id="delete" layoutX="331.0" layoutY="14.0" mnemonicParsing="false" onAction="#supprimer" styleClass="add-btn" stylesheets="@adminaddcompetition.css" text="Supprimer" />
-      <Button fx:id="AddB" layoutX="197.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPerf" styleClass="add-btn" stylesheets="@adminaddcompetition.css" text="Ajouter Performance" />
-      <Button fx:id="ComB" layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#GotoCom" text="Espace Competition" />
-      <Button layoutX="27.0" layoutY="135.0" mnemonicParsing="false" text="Espace Performance" />
-      <AnchorPane layoutX="-12.0" prefHeight="550.0" prefWidth="200.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+      <AnchorPane prefHeight="600.0" prefWidth="842.0" style="-fx-background-radius: 40;" styleClass="linear-grad">
          <children>
-            <Button fx:id="compC" layoutX="29.0" layoutY="458.0" mnemonicParsing="false" onAction="#espaceCompetition" styleClass="search-box" stylesheets="@adminaddcompetition.css" text="Espace Competition" />
-            <Button fx:id="PerfC" layoutX="28.0" layoutY="494.0" mnemonicParsing="false" onAction="#EspacePerformance" styleClass="search-box" text="Espace Performance" />
-            <HBox layoutX="1.0" layoutY="31.0" prefHeight="100.0" prefWidth="200.0">
-               <styleClass>
-                  <String fx:value="transparent" />
-                  <String fx:value="shadow" />
-               </styleClass>
-            </HBox>
-            <Label layoutX="65.0" layoutY="37.0" text="Espace" textFill="#fcfcfc">
-               <font>
-                  <Font name="Corbel Light" size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="29.0" layoutY="81.0" text="Performance" textFill="WHITE">
-               <font>
-                  <Font name="Corbel Light" size="25.0" />
-               </font>
-            </Label>
+            <Label layoutX="204.0" layoutY="550.0" text="AériensGagnés: Duels aériens gagnés par match" textFill="WHITE" />
+            <Label layoutX="204.0" layoutY="526.0" text="Jau: Carton jaune" textFill="WHITE" />
+            <Label layoutX="204.0" layoutY="501.0" text="Mins: Minutes jouées" textFill="WHITE" />
+            <Label layoutX="305.0" layoutY="526.0" text="Rou: Carton rouge" textFill="WHITE" />
+            <Label layoutX="409.0" layoutY="501.0" text="Buts: Total Buts" textFill="WHITE" />
+            <Label layoutX="499.0" layoutY="547.0" text="PR%: Taux de passes réussies" textFill="WHITE" />
+            <Label layoutX="450.0" layoutY="523.0" text="HdM: Homme du match" textFill="WHITE" />
+            <Label layoutX="564.0" layoutY="493.0" text="P.Décisives: Total Passes décisives" textFill="WHITE" />
+            <Label layoutX="620.0" layoutY="523.0" text="TpM: Tirs par match" textFill="WHITE" />
+            <Pane layoutX="502.0" prefHeight="59.0" prefWidth="302.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@fullpackstyling.css">
+               <children>
+                  <Label layoutX="21.0" layoutY="14.0" text="Admin" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="82.0" fitWidth="71.0" layoutX="211.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@IMG/coach.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button fx:id="delete" layoutX="337.0" layoutY="21.0" mnemonicParsing="false" onAction="#supprimer" styleClass="add-btn" stylesheets="@adminaddcompetition.css" text="Supprimer" />
+            <Button fx:id="AddB" layoutX="204.0" layoutY="21.0" mnemonicParsing="false" onAction="#addPerf" styleClass="add-btn" stylesheets="@adminaddcompetition.css" text="Ajouter Performance" />
+            <Button fx:id="hhhh" layoutX="215.0" layoutY="459.0" mnemonicParsing="false" onAction="#GoStats" prefHeight="27.0" prefWidth="167.0" styleClass="add-btn" text="Statistiques des Joueurs" />
          </children>
       </AnchorPane>
-      <Label layoutX="204.0" layoutY="460.0" text="Mins: Minutes jouées" />
-      <Label layoutX="204.0" layoutY="509.0" text="AériensGagnés: Duels aériens gagnés par match" />
-      <Label layoutX="614.0" layoutY="460.0" text="P.Décisives: Total Passes décisives" />
-      <Label layoutX="204.0" layoutY="485.0" text="Jau: Carton jaune" />
-      <Label layoutX="450.0" layoutY="485.0" text="HdM: Homme du match" />
-      <Label layoutX="323.0" layoutY="485.0" text="Rou: Carton rouge" />
-      <Label layoutX="450.0" layoutY="460.0" text="TpM: Tirs par match" />
-      <Label layoutX="326.0" layoutY="460.0" text="Buts: Total Buts" />
-      <Label layoutX="614.0" layoutY="485.0" text="PR%: Taux de passes réussies" />
+      <TableView fx:id="tableview" layoutX="201.0" layoutY="51.0" prefHeight="400.0" prefWidth="638.0">
+        <columns>
+          <TableColumn fx:id="joueur" prefWidth="60.0" text="Joueur" />
+          <TableColumn fx:id="competition" maxWidth="123.0" minWidth="3.0" prefWidth="73.0" text="Competition" />
+            <TableColumn fx:id="apps" minWidth="0.0" prefWidth="31.0" text="Apps" />
+            <TableColumn fx:id="mins" minWidth="0.0" prefWidth="37.0" text="mins" />
+            <TableColumn fx:id="buts" maxWidth="100.0" minWidth="0.0" prefWidth="30.0" text="buts" />
+            <TableColumn fx:id="pd" prefWidth="29.0" text="PD" />
+            <TableColumn fx:id="jaune" minWidth="0.0" prefWidth="37.0" text="jau" />
+            <TableColumn fx:id="rouge" prefWidth="47.0" text="rou" />
+            <TableColumn fx:id="tpm" minWidth="0.0" prefWidth="35.0" text="tpm" />
+            <TableColumn fx:id="pr" prefWidth="39.0" text="pr" />
+            <TableColumn fx:id="ag" prefWidth="42.0" text="ag" />
+            <TableColumn fx:id="hdm" prefWidth="43.0" text="hdm" />
+            <TableColumn fx:id="note" prefWidth="43.0" text="note" />
+        </columns>
+      </TableView>
+      <Button fx:id="ComB" layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#GotoCom" text="Espace Competition" />
+      <Button layoutX="27.0" layoutY="135.0" mnemonicParsing="false" text="Espace Performance" />
+      <AnchorPane layoutX="-12.0" prefHeight="600.0" prefWidth="208.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">
+         <children>
+            <Button fx:id="compC" layoutX="14.0" layoutY="41.0" mnemonicParsing="false" onAction="#espaceCompetition" prefHeight="67.0" prefWidth="194.0" styleClass="button2" stylesheets="@adminaddcompetition.css" text="Espace Competition" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="PerfC" layoutX="12.0" layoutY="115.0" mnemonicParsing="false" onAction="#EspacePerformance" prefHeight="67.0" prefWidth="194.0" text="Espace Performance" textFill="WHITE">
+               <styleClass>
+                  <String fx:value="button2" />
+                  <String fx:value="linear-grad" />
+               </styleClass>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
    </children>
+   <stylesheets>
+      <URL value="@fullpackstyling.css" />
+      <URL value="@adminaddcompetition.css" />
+   </stylesheets>
 </AnchorPane>

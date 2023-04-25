@@ -71,6 +71,8 @@ public class PerformanceFrontController implements Initializable {
     private Button ranked;
     @FXML
     private Button pdf;
+    @FXML
+    private Button perfButton1;
    
    
   
@@ -146,6 +148,16 @@ private void PDFGen(ActionEvent event) {
         pdfGenerator.generatePDF(ps.affichage(), file.getAbsolutePath());
     }
 }
+
+    @FXML
+    private void Toperformance(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/PerformanceFront.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
 
     
     

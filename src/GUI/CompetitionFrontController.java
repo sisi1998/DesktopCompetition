@@ -6,10 +6,13 @@
 package GUI;
 
 import Entities.Competition;
+import java.net.URISyntaxException;
 import static GUI.AdminListCompetitionController.competition2;
 import Services.CompetitionService;
 import static java.awt.Color.blue;
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -30,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -72,6 +76,12 @@ public class CompetitionFrontController implements Initializable {
     private Button detail;
     
     public static Competition selectedCompetition;
+    @FXML
+    private ImageView imgY;
+    @FXML
+    private Button prevC;
+    @FXML
+    private Button compButton1;
 
     /**
      * Initializes the controller class.
@@ -139,7 +149,7 @@ int row=1;
          AnchorPane cardbox = fxmlloader.load();
          CompetitionController competitionController =fxmlloader.getController();
          competitionController.setData(Competitions.get(i),myListener);
-        if(comuns==3){
+        if(comuns==4){
             comuns=0;
         ++row;
         }
@@ -237,6 +247,33 @@ private void searchCritereS(ActionEvent event) {
     @FXML
     private void GotoDetails(ActionEvent event) {
     }
+
+  @FXML
+private void imgTOyou(MouseEvent event) throws URISyntaxException, IOException {
+    URI youtubeLink = new URI("https://www.youtube.com/watch?v=MnBpFAo5FrI&ab_channel=Ligue1UberEats");
+    Desktop.getDesktop().browse(youtubeLink);
+}
+
+    @FXML
+    private void GoToPrev(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/FavoriteCompetition.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
+    @FXML
+    private void Topcomp(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/CompetitionFront.fxml"));
+    Parent root = loader.load();
+   ListPerformanceController controller = loader.getController();
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+    }
+
 
 
 
