@@ -52,7 +52,7 @@ public class CompetitionFrontController implements Initializable {
     private GridPane compGrid;
     @FXML
     private Button perfButton;
-    public static Competition competition ;
+    public static ImageView competition ;
     @FXML
     private Label CHcomp;
     @FXML

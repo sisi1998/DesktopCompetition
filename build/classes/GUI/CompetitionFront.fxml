@@ -41,10 +41,10 @@
                   <String fx:value="button1" />
                </styleClass>
             </AnchorPane>
-            <TextField fx:id="searchName" layoutX="45.0" layoutY="204.0" styleClass="search-box" />
+            <TextField fx:id="searchName" layoutX="55.0" layoutY="204.0" styleClass="search-box" />
             <Button fx:id="searchCritere" layoutX="79.0" layoutY="306.0" mnemonicParsing="false" onAction="#searchCritereS" styleClass="add-btn" text="Rechercher" />
-            <TextField fx:id="searchArena" layoutX="42.0" layoutY="269.0" styleClass="search-box" />
-            <TextField fx:id="searchDate" layoutX="42.0" layoutY="236.0" styleClass="search-box" />
+            <TextField fx:id="searchArena" layoutX="55.0" layoutY="266.0" styleClass="search-box" />
+            <TextField fx:id="searchDate" layoutX="55.0" layoutY="236.0" styleClass="search-box" />
             <Button fx:id="perfButton" layoutX="11.0" layoutY="130.0" mnemonicParsing="false" onAction="#Toperformance" prefHeight="46.0" prefWidth="217.0" styleClass="button1" text="Espace Performance" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -59,6 +59,9 @@
                   <Image url="@IMG/342556323_704667194998998_8201126061904933936_n.png" />
                </image>
             </ImageView>
+            <Label layoutX="20.0" layoutY="208.0" text="Nom" textFill="WHITE" />
+            <Label layoutX="21.0" layoutY="240.0" text="Date" textFill="WHITE" />
+            <Label layoutX="17.0" layoutY="270.0" text="Arene" textFill="WHITE" />
          </children>
       </AnchorPane>
       <HBox layoutX="233.0" layoutY="207.0" prefHeight="379.0" prefWidth="564.0" styleClass="linear-grad">
