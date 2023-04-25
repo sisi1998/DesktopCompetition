@@ -210,7 +210,6 @@ public void setId(int id) {
                             stage.show();
     }
 
-    @FXML
     private void TopeCompetiob(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/CompetitionFront.fxml"));
     Parent root = loader.load();
@@ -218,6 +217,10 @@ public void setId(int id) {
      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(new Scene(root));
                             stage.show();
+    }
+
+    @FXML
+    private void TopeCompe(ActionEvent event) {
     }
 
 
