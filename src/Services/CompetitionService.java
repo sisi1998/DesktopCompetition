@@ -445,7 +445,7 @@ public void checkAllCompetitionsDueDate() throws ParseException {
             long timeDiffMillis = competitionDate.getTime() - System.currentTimeMillis();
             long timeDiffHours = TimeUnit.MILLISECONDS.toHours(timeDiffMillis);
 
-            if (timeDiffHours <= 24) {
+            if (timeDiffHours <= 24 && timeDiffHours>0) {
                 dueCompetitions.add(competitionId);
 
                 // get the email addresses of all players in the equipe associated with the competition

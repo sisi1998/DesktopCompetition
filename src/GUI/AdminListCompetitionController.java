@@ -317,6 +317,12 @@ public void initialize(URL url, ResourceBundle rb) {
     @FXML
     private void sendMails(ActionEvent event) throws ParseException {
         sp.checkAllCompetitionsDueDate();
+       Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Mail");
+        alert.setHeaderText(null);
+        alert.setContentText("les joeurs sont notifiés.");
+        alert.showAndWait();
+        return;
     }
 
     @FXML
