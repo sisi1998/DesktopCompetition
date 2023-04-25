@@ -18,6 +18,41 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 import javax.mail.Authenticator;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+
+import javax.activation.FileDataSource;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.activation.DataHandler;
+
+import javax.activation.FileDataSource;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -39,6 +74,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Multipart;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instances;
@@ -366,12 +402,30 @@ private void sendCompetitionReminderEmail(String playerEmail) {
         message.setFrom(new InternetAddress(from));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
         message.setSubject("Competition Reminder");
-        message.setText("Dear Player, Your competition is due in one day. Please be prepared.");
+
+        // Create the message body part
+        MimeBodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setText("Dear Player, Your competition is due in one day. Please be prepared.");
+
+        // Create the attachment body part
+        MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+        String attachmentFilePath = "C:\\Users\\Siwar\\Documents\\NetBeansProjects\\Pidev\\src\\GUI\\IMG\\342556323_704667194998998_8201126061904933936_n.png";
+        FileDataSource source = new FileDataSource(attachmentFilePath);
+        attachmentBodyPart.setDataHandler(new DataHandler((javax.activation.DataSource) source));
+        attachmentBodyPart.setFileName("picture.jpg");
+
+        // Create the multipart message and add the message and attachment parts to it
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(messageBodyPart);
+        multipart.addBodyPart(attachmentBodyPart);
+        message.setContent(multipart);
+
         Transport.send(message);
     } catch (MessagingException mex) {
         mex.printStackTrace();
     }
 }
+
 
 public void checkAllCompetitionsDueDate() throws ParseException {
     String query = "SELECT id, date FROM competition";

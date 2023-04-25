@@ -258,7 +258,7 @@ private void imgTOyou(MouseEvent event) throws URISyntaxException, IOException {
     private void GoToPrev(ActionEvent event) throws IOException {
           FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/FavoriteCompetition.fxml"));
     Parent root = loader.load();
-   ListPerformanceController controller = loader.getController();
+   FavoriteCompetitionController controller = loader.getController();
      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(new Scene(root));
                             stage.show();

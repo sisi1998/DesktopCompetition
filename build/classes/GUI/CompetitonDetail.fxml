@@ -20,17 +20,12 @@
                   <URL value="@fullpackstyling.css" />
                </stylesheets>
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="185.0" layoutX="14.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="179.0" fitWidth="172.0" layoutX="14.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@IMG/trophy-42177.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="favoredN" layoutX="39.0" layoutY="53.0" prefHeight="25.0" prefWidth="133.0" />
-                  <Label layoutX="50.0" layoutY="14.0" text="Equipe privilégiée" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
             <ImageView fitHeight="135.0" fitWidth="257.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">

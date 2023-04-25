@@ -12,14 +12,17 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/fullpackstyling.css</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/adminaddcompetition.css</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitonDetailController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/FavoriteCompetitionController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/SortedPlayersController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/PlayerRankController.java</file>
             <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/AdminAddCompetitionController.java</file>
             <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitionFrontController.java</file>
             <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/NewFXMain.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/AdminListCompetitionController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/AdminUpdateCompetitionController.java</file>
-            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/CompetitionController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/PerformanceFrontController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/PerformanceStatsController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/ListPerformanceController.java</file>
+            <file>file:/C:/Users/Siwar/Documents/NetBeansProjects/Pidev/src/GUI/UpdatePerformanceController.java</file>
         </group>
     </open-files>
 </project-private>

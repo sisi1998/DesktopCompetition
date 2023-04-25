@@ -46,7 +46,7 @@
                   <TableColumn fx:id="winner" prefWidth="75.0" text="Gagnant" />
                </columns>
             </TableView>
-            <Button fx:id="send" layoutX="672.0" layoutY="508.0" mnemonicParsing="false" onAction="#sendMails" styleClass="add-btn" stylesheets="@fullpackstyling.css" text="Envoyer " />
+            <Button fx:id="send" layoutX="475.0" layoutY="549.0" mnemonicParsing="false" onAction="#sendMails" styleClass="add-btn" stylesheets="@fullpackstyling.css" text="Envoyer " />
             <Pane layoutX="208.0" layoutY="65.0" prefHeight="67.0" prefWidth="320.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@fullpackstyling.css">
                <children>
                   <TextField fx:id="recherche" layoutX="146.0" layoutY="34.0" onKeyPressed="#RechercheHandle" styleClass="search-box" stylesheets="@adminaddcompetition.css" />
@@ -57,6 +57,11 @@
                   </Label>
                </children>
             </Pane>
+            <Label layoutX="217.0" layoutY="548.0" text="Notifier les Joueurs par Mail" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="201.0" styleClass="right-bar" stylesheets="@adminaddcompetition.css">

@@ -188,7 +188,7 @@ public void setId(int id) {
     private void Toperformance(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/PerformanceFront.fxml"));
     Parent root = loader.load();
-   ListPerformanceController controller = loader.getController();
+   PerformanceFrontController controller = loader.getController();
      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(new Scene(root));
                             stage.show();
@@ -204,7 +204,7 @@ public void setId(int id) {
     private void GoBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/CompetitionFront.fxml"));
     Parent root = loader.load();
-   ListPerformanceController controller = loader.getController();
+   CompetitionFrontController controller = loader.getController();
      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(new Scene(root));
                             stage.show();
@@ -214,7 +214,7 @@ public void setId(int id) {
     private void TopeCompetiob(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/CompetitionFront.fxml"));
     Parent root = loader.load();
-   ListPerformanceController controller = loader.getController();
+   CompetitionFrontController controller = loader.getController();
      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(new Scene(root));
                             stage.show();
